@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Simple alias script for cleaning up fork PR reviews
+# Usage: ./scripts/cleanup-pr <github_username> <local_branch_name>
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "$SCRIPT_DIR/cleanup-fork-review.sh" "$@"
