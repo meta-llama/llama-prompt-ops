@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Simple alias script for reviewing fork PRs
+# Usage: ./scripts/review-pr <github_username> <branch_name>
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "$SCRIPT_DIR/review-fork-pr.sh" "$@"
