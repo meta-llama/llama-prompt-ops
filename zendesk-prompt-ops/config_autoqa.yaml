@@ -1,0 +1,30 @@
+system_prompt:
+  file: prompts/translate_optional_v4_system.md
+  inputs:
+  - question
+  outputs:
+  - answer
+
+dataset:
+  adapter_class: data.AutoQADatasetAdapter.AutoQADatasetAdapter
+  path: data/merged_dialog_manual_review_fixed.json
+  input_field: inputs.question
+  golden_output_field: outputs.answer
+
+model:
+  task_model: openrouter/meta-llama/llama-4-scout
+  proposer_model: openrouter/meta-llama/llama-3.3-70b-instruct
+
+metric:
+  class: data.AutoQAMetric.AutoQAMetric
+  strict_json: false
+  output_field: answer
+  weights:
+    Greeting: 0.1
+    Closing: 0.1
+    Comprehension: 0.3
+    Empathy: 0.1
+    Solution: 0.2
+    Tone: 0.2
+optimization:
+  strategy: llama

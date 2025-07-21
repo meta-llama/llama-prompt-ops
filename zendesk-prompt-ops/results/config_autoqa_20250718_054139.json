@@ -1,0 +1,29 @@
+{
+  "prompt": "You are a highly skilled customer support agent working for a prestigious multinational company. A high-stakes situation has arisen where a major client, who accounts for a significant portion of your company's revenue, is experiencing a critical issue with their order. The client is extremely dissatisfied and is threatening to take their business elsewhere if the issue is not resolved immediately. Your task is to analyze the conversation between the client and the previous support agent, identify any areas where the agent fell short, and provide a revised response that addresses the client's concerns in a professional, empathetic, and solution-focused manner.\n\nThe conversation is as follows:\n\n... (insert conversation here)\n\nAnalyze the conversation and provide a revised response that meets the following criteria:\n\n1. Greeting: Provide a professional and welcoming opening that acknowledges the client's frustration.\n2. Tone: Maintain a tone that is professional, empathetic, and solution-focused.\n3. Empathy: Show genuine understanding and concern for the client's situation and feelings.\n4. Issue Understanding: Demonstrate a clear understanding of the client's issue and needs.\n5. Solution Offered: Provide a clear and concrete solution to the client's problem, including specific steps and timelines.\n6. Personalization: Tailor the response to the individual client, using their name and referencing their specific context.\n7. Closing: End the conversation in a professional and conclusive manner, thanking the client and offering further assistance.\n\nYour revised response should be in the following format:\n\n```json\n{\n  \"greeting\": \"yes|no|n/a\",\n  \"tone\": [\"tone1\", \"tone2\", \"tone3\"],\n  \"empathy\": \"yes|no|n/a\",\n  \"issue_understanding\": \"yes|no|n/a\",\n  \"solution_offered\": \"yes|no|n/a\",\n  \"personalization\": \"yes|no|n/a\",\n  \"closing\": \"yes|no|n/a\",\n}\n```\n\nUse \"yes\", \"no\", or \"n/a\" for most attributes. For tone, provide an array of 1-3 relevant tones ordered by importance. If there was no problem to solve, answer \"n/a\" for solution_offered.\n\nThe fate of your company's relationship with this major client rests on your ability to provide an exceptional response. The client is watching, and the clock is ticking.",
+  "few_shots": [
+    {
+      "question": "18 Agent1: Como posso ajudá-lo hoje?\n19 Customer: Olá, realizei um pedido de ração para gatos há mais de uma semana e ainda não recebi. Poderia verificar o que está acontecendo?\n20 Agent1: Você poderia me fornecer o número do pedido para que eu possa investigar isso?\n21 Customer: Claro, o número do pedido é 56789.\n22 Agent1: Deixe-me verificar... Parece que houve um problema com a transportadora. Infelizmente, o envio foi atrasado.\n23 Customer: Entendo, mas o que pode ser feito para que eu receba o mais rápido possível?\n24 Agent1: Podemos tentar um novo envio ou você prefere aguardar a entrega já em andamento?\n25 Customer: Prefiro que tentem um novo envio, não posso esperar mais.\n26 Agent1: Tudo bem, vamos providenciar um novo envio imediatamente.\n27 Customer: Poderia me confirmar quando isso for feito? Eu realmente agradeceria.\n28 Agent1: Sim, eu enviarei um e-mail de confirmação assim que o novo envio for processado.\n29 Customer: Muito obrigado! Agradeço imensamente seu auxílio. Poderia também escalar essa situação para um nível superior, por favor?\n30 Agent1: Claro, irei notificar nossa equipe de gerenciamento sobre o ocorrido para que possam melhorar o processo.\n31 Customer: Maravilha! Vou aguardar os updates então. Mais uma vez, obrigado por sua ajuda excepcional!\n32 Agent1: Fico à disposição para qualquer outra dúvida. Tenha um bom dia.",
+      "context": "",
+      "answer": {
+        "Greeting": 1.0,
+        "Closing": 1.0,
+        "Comprehension": 1.0,
+        "Empathy": 1.0,
+        "Solution": 1.0,
+        "Tone": 4.0
+      }
+    },
+    {
+      "question": "0 Agent1: meneer Jansen. Hoe kan ik u vandaag helpen?\n1 Customer: ik heb onlangs een bestelling geplaatst voor veiligheidskleding voor mijn bouwbedrijf, maar het is nog niet geleverd. Kunt u me helpen?\n2 Agent1: Sorry voor het ongemak, meneer Jansen. Laat me even kijken naar uw bestelling. Kunt u mij uw ordernummer geven?\n3 Customer: Natuurlijk, het ordernummer is 456789.\n4 Agent1: Bedankt voor de info. Het lijkt erop dat er een vertraging is bij onze leverancier. We verwachten de levering binnen drie werkdagen.\n5 Customer: Drie werkdagen is lang voor ons project. Is er een kans op versnelde levering?\n6 Agent1: Ik begrijp uw zorgen. Ik zal ons logistiek team vragen of ze een versnelde levering kunnen regelen.\n7 Customer: Dat zou zeer nuttig zijn, dank u. Ik wil ook dat dit wordt doorgestuurd naar een manager voor verdere opvolging.\n8 Agent1: Uiteraard, meneer Jansen. Ik zal uw verzoek doorsturen naar mijn manager en ervoor zorgen dat iemand contact met u opneemt.\n9 Customer: Prima, ik wacht op updates. Alvast bedankt voor uw hulp.\n10 Agent1: Ik waardeer uw geduld, meneer Jansen. Zijn er verder nog vragen of dingen die ik voor u kan opzoeken?\n11 Customer: Niet op dit moment, maar ik hoor graag snel iets van jullie. Bedankt.\n12 Agent1: Ik zorg ervoor dat we snel contact met u opnemen. En ik wens u een fijne dag verder.\n13 Customer: Dank u, hetzelfde.\n14 Agent1: Ik zal ook onze klantenservice op de hoogte stellen om te zien of we u extra tegemoet kunnen komen.\n15 Customer: Dat zou ik zeer op prijs stellen. Hartelijk dank.\n16 Agent1: Nogmaals mijn excuses voor de vertraging. Ik houd u op de hoogte van de voortgang.\n17 Customer: Ik kijk uit naar uw update. Fijne dag verder.",
+      "context": "",
+      "answer": {
+        "Greeting": 1.0,
+        "Closing": 1.0,
+        "Comprehension": 1.0,
+        "Empathy": 1.0,
+        "Solution": 1.0,
+        "Tone": 4.0
+      }
+    }
+  ]
+}
