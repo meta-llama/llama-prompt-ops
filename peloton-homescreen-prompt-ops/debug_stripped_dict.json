@@ -1,0 +1,767 @@
+    "Guided Meditation",
+    "Rowing Warm Up & Cool Down",
+    "Beginner Row",
+    "Rowing",
+    "Endurance Row",
+    "Intervals Row",
+    "Scenic Row",
+    "Upper Body Stretch",
+    "Lower Body Stretch",
+    "Scenic Walk",
+    "Pre Row Stretch",
+    "Post Ride Stretch",
+    "Meditation",
+    "Pre & Post Cycling Stretch",
+    "Post Run Stretch",
+    "Pre & Post Row Stretch",
+    "Hill Run",
+    "Running Warm Up",
+    "Running Cool Down",
+    "Running Skills",
+    "Intervals Run",
+    "Endurance Run",
+    "Speed Run",
+    "Running",
+    "Walk + Run",
+    "Scenic Cycling",
+    "Distance Scenic Cycling",
+    "HIIT Cardio",
+    "Yoga",
+    "Cycling Cool Down",
+    "Beginner Cycling",
+    "Cycling",
+    "Total Body Yoga",
+    "Power Yoga",
+    "Yoga + Pilates"
+  ],
+DURATIONS = [
+    5,
+    10,
+    15,
+    20,
+    30,
+    45,
+    60
+  ]
+
+User's Fitness Goal: Build Strength
+
+Current Date/Time: 2025-07-18 10:00:00
+
+User's Workout History: {"workout_summary":{"total_workouts":8,"date_range":{"earliest":"2025-07-08 13:50:45","latest":"2025-07-17 09:39:57"},"disciplines":{"strength":5,"cycling":2,"rowing":1}},"workouts":[{"distance":0,"max_speed":0,"max_incline":0,"avg_cadence":0,"max_stroke_rate":null,"max_heart_rate":148,"duration":1800,"max_resistance":0,"daily_streak":1,"hr_z3_time":588,"hr_z1_time":144,"max_power":0,"end_time":1751998845,"updated_at":1752178011,"fitness_discipline":"strength","is_audio":false,"calories":373.84,"avg_heart_rate":123.88,"total_work":0,"avg_resistance":0,"title":"30 min Full Body Strength","weekly_streak":99,"hr_z5_time":0,"stroke_count":null,"origin_locale":"en-US","ttl":1783714011,"apple_watch_active_calories":0,"volume_in_kg":null,"avg_stroke_rate":null,"avg_incline":0,"can_recommend_global":true,"hr_z4_time":14,"total_video_watch_time_seconds":2025,"max_cadence":0,"finalized_at":1751998846,"apple_watch_total_calories":0,"difficulty_level_enum":1,"ride_id":"ff8967d9329147e7ab711a0a79c6a512","strength_metrics_summary_v1":null,"avg_power":0,"start_time":1751997045,"avg_speed":0,"user_id":"23cc0318c483b7d38a34aa9b48f048a9","platform":"home_bike","is_on_demand":true,"workout_id":"ec5cf068d0f24d8aa29c2dd8c80ca466","elevation":0,"is_deleted":false,"hr_z2_time":1049,"start_time_readable":"Tuesday, 2025-07-08 13:50:45","end_time_readable":"Tuesday, 2025-07-08 14:20:45","duration_unit":"seconds","calories_unit":"cal","distance_unit":"miles","avg_speed_unit":"mph","max_speed_unit":"mph","avg_power_unit":"watts","max_power_unit":"watts","total_work_unit":"kJ","avg_cadence_unit":"rpm","max_cadence_unit":"rpm","avg_resistance_unit":"%","max_resistance_unit":"%","avg_heart_rate_unit":"bpm","max_heart_rate_unit":"bpm","avg_incline_unit":"%","max_incline_unit":"%","deltas_from_previous":{"time_since_previous_workout":{"value":176580,"unit":"seconds","days":2.04},"calories_delta":{"absolute_change":167.69,"percent_change":81.34,"unit":"cal"},"distance_delta":{"absolute_change":-4.83,"percent_change":-100.0,"unit":"miles"},"avg_speed_delta":{"absolute_change":-13.48,"percent_change":-100.0,"unit":"mph"},"max_speed_delta":{"absolute_change":-17.5,"percent_change":-100.0,"unit":"mph"},
+
+2025/07/22 15:05:57 INFO dspy.teleprompt.mipro_optimizer_v2: 2: {
+   "answer":
+      {
+         "class_types": ["Lower Body Strength", "Full Body Strength"],
+         "durations": ["30"],
+         "explanation": "With a strength goal in mind and a history of varied workouts, today's 30-min Lower Body Strength class will build power and boost metabolism, setting the stage for tomorrow's full-body session"
+      }
+}
+
+2025/07/22 15:05:57 INFO dspy.teleprompt.mipro_optimizer_v2: 3: # ROLE
+You are Peloton's expert, motivational fitness coach and data-driven analyst
+
+# YOUR TASK
+You are given a user's fitness goal, their current date and time, and a list of their past workouts.
+Recommend the next workout class a user should take and briefly explain *why* in a way that feels personal, insightful, and motivating
+Follow every constraint below:
+
+## HIGH-LEVEL REASONING STRATEGY
+### 1. Absorb Context
+   1.a - Read the user's stated goal and their complete workout history
+   1.b - Note frequency, modalities, recovery gaps, intensity trends, or discipline preferences, and any plateaus or surges in performance
+   1.c - Note how long its been since their last workout and what that workout was
+
+### 2. Generate Tailored Class Options
+   2.a - Pick one or more class_types from the CLASS_TYPES enum below that advance the user toward their goal, respect revealed preferences, and follow fitness best practices
+   2.b - Choose a duration from the DURATIONS enum below that align with both the class_types and the user's typical or progressive workload
+   2.c - If multiple durations are relevant, list them all
+   2.d - Only include class_types from at most 2 disciplines
+
+### 3. Craft a Deep, Nuanced Explanation
+   3.a - In ≤ 140 characters, weave together:
+       3.a.1 - A specific reference to something they did (e.g., “Tuesday's 30-min climb ride”) or a notable pattern (e.g., “3 straight short HIIT sessions”)
+       3.a.2 - A concise rationale: why today's pick supports overload, recovery balance, or skill variety for their goal
+       3.a.3 - A motivational hook that feels friendly, expert, and *unique* to their history
+   3.b - Use at most one exclamation point
+   3.c - No irrelevant pleasantries or sign-offs
+   3.d - Make the text as clear and readable as possible
+   3.e - To calculate the day of the week a workout occurred, calculate the difference between the current date and the workout date, then use the modulo operator (%) to get the remainder when divided by 7. The result will be a number between 0 and 6, where 0 is the same day of the week as the user's current date/time (e.g., Monday), 1 is the previous day i.e., Sunday, 2 is Saturday, etc.
+
+### 4. Sanity Check Before Output
+   4.a - Does the recommendation logically flow from the user's goal *and* history?
+   4.b - Is the explanation non-trivial, specific, and encouraging?
+   4.c - Is the total character count within the limit?
+   4.d - Does the output match the exact response format?
+
+## EXACT RESPONSE FORMAT
+The output should be a JSON object with the following keys:
+{
+   "answer":
+      {
+         "class_types": ["<value 1>", "<value 2>", ...] # comma-separated list of values from the CLASS_TYPES enum.
+         "durations": ["<value 1>", "<value 2>", ...] # comma-separated list of durations from the DURATIONS enum
+         "explanation": "<short, deep, personalized explanation>"
+      }
+}
+
+(Do NOT add any other keys, commentary, or markup.)
+
+## DOMAIN-SPECIFIC GUIDANCE
+- Recovery windows matter: if <24 h has passed since a high-intensity session, favor lower-intensity or mobility work unless the goal states otherwise
+- If the user shows a clear preference, leverage it for adherence unless variety is key to the goal
+- Do not mention missing data; reason from what is present
+- Provide novelty only when it will not risk injury or recovery debt
+
+# ENUMS
+CLASS_TYPES = [
+    "Just Run",
+    "Scenic Run",
+    "Guided Scenic Run",
+    "Distance Scenic Run",
+    "Outdoor Run",
+    "Outdoor Walk",
+    "Outdoor Speed Run",
+    "Yoga Conditioning",
+    "Low Impact Cardio",
+    "Low Intensity HIIT Cardio",
+    "Bodyweight Strength",
+    "Full Body Strength",
+    "Core Strength",
+    "Outdoor Endurance Run",
+    "Walking Warm Up",
+    "Walking Cool Down",
+    "Walk",
+    "Cycling Warm Up",
+    "Just Ride Cycling",
+    "Upper Body Strength",
+    "Pre Run Stretch",
+    "Outdoor Intervals Run",
+    "Hiking Walk",
+    "Guided Scenic Walk",
+    "Zen Meditation",
+    "Low Impact Cycling",
+    "Intervals Cycling",
+    "Climb Cycling",
+    "Power Zone Cycling",
+    "Outdoor Power Walk",
+    "Shadowboxing",
+    "Dance Cardio",
+    "Full Body HIIT Cardio",
+    "Lower Body Strength",
+    "Strength for Runners",
+    "Barre",
+    "Pilates",
+    "Beginner Strength",
+    "Sleep Meditation",
+    "Beginner Run",
+    "Power Walk",
+    "Guided Meditation",
+    "Rowing Warm Up & Cool Down",
+    "Beginner Row",
+    "Rowing",
+    "Endurance Row",
+    "Intervals Row",
+    "Scenic Row",
+    "Upper Body Stretch",
+    "Lower Body Stretch",
+    "Scenic Walk",
+    "Pre Row Stretch",
+    "Post Ride Stretch",
+    "Meditation",
+    "Pre & Post Cycling Stretch",
+    "Post Run Stretch",
+    "Pre & Post Row Stretch",
+    "Hill Run",
+    "Running Warm Up",
+    "Running Cool Down",
+    "Running Skills",
+    "Intervals Run",
+    "Endurance Run",
+    "Speed Run",
+    "Running",
+    "Walk + Run",
+    "Scenic Cycling",
+    "Distance Scenic Cycling",
+    "HIIT Cardio",
+    "Yoga",
+    "Cycling Cool Down",
+    "Beginner Cycling",
+    "Cycling",
+    "Total Body Yoga",
+    "Power Yoga",
+    "Yoga + Pilates"
+  ],
+DURATIONS = [
+    5,
+    10,
+    15,
+    20,
+    30,
+    45,
+    60
+  ]
+
+# INPUT BLOCKS
+User's Fitness Goal: Support Weight Goals
+
+Current Date/Time: 2025-07-17 09:39:57
+
+User's Workout History: {"workout_summary":{"total_workouts":8,"date_range":{"earliest":"2025-07-08 13:50:45","latest":"2025-07-17 09:39:57"},"disciplines":{"strength":5,"cycling":2,"rowing":1}},"workouts":[{"distance":0,"max_speed":0,"max_incline":0,"avg_cadence":0,"max_stroke_rate":null,"max_heart_rate":148,"duration":1800,"max_resistance":0,"daily_streak":1,"hr_z3_time":588,"hr_z1_time":144,"max_power":0,"end_time":1751998845,"updated_at":1752178011,"fitness_discipline":"strength","is_audio":false,"calories":373.84,"avg_heart_rate":123.88,"total_work":0,"avg_resistance":0,"title":"30 min Full Body Strength","weekly_streak":99,"hr_z5_time":0,"stroke_count":null,"origin_locale":"en-US","ttl":1783714011,"apple_watch_active_calories":0,"volume_in_kg":null,"avg_stroke_rate":null,"avg_incline":0,"can_recommend_global":true,"hr_z4_time":14,"total_video_watch_time_seconds":2025,"max_cadence":0,"finalized_at":1751998846,"apple_watch_total_calories":0,"difficulty_level_enum":1,"ride_id":"ff8967d9329147e7ab711a0a79c6a512","strength_metrics_summary_v1":null,"avg_power":0,"start_time":1751997045,"avg_speed":0,"user_id":"23cc0318c483b7d38a34aa9b48f048a9","platform":"home_bike","is_on_demand":true,"workout_id":"ec5cf068d0f24d8aa29c2dd8c80ca466","elevation":0,"is_deleted":false,"hr_z2_time":1049,"start_time_readable":"Tuesday, 2025-07-08 13:50:45","end_time_readable":"Tuesday, 2025-07-08 14:20:45","duration_unit":"seconds","calories_unit":"cal","distance_unit":"miles","avg_speed_unit":"mph","max_speed_unit":"mph","avg_power_unit":"watts","max_power_unit":"watts","total_work_unit":"kJ","avg_cadence_unit":"rpm","max_cadence_unit":"rpm","avg_resistance_unit":"%","max_resistance_unit":"%","avg_heart_rate_unit":"bpm","max_heart_rate_unit":"bpm","avg_incline_unit":"%","max_incline_unit":"%","deltas_from_previous":{"time_since_previous_workout":{"value":176580,"unit":"seconds","days":2.04},"calories_delta":{"absolute_change":167.69,"percent_change":81.34,"unit":"cal"},"distance_delta":{"absolute_change":-4.83,"percent_change":-100.0,"unit":"miles"},"avg_speed_delta":{"absolute_change":-13.48,"percent_change":-100.0,"unit":"mph"},"max_speed_delta":{"absolute
+
+2025/07/22 15:05:57 INFO dspy.teleprompt.mipro_optimizer_v2: 4: {
+  "answer": {
+    "class_types": ["Low Impact Cardio"],
+    "durations": [20, 30],
+    "explanation": "Thursday's 1-mile walk boosts calorie burn; a 20-30 min Low Impact Cardio session supports weight goals"
+  }
+}
+
+2025/07/22 15:05:57 INFO dspy.teleprompt.mipro_optimizer_v2:
+
+2025/07/22 15:05:57 INFO dspy.teleprompt.mipro_optimizer_v2: ==> STEP 3: FINDING OPTIMAL PROMPT PARAMETERS <==
+2025/07/22 15:05:57 INFO dspy.teleprompt.mipro_optimizer_v2: We will evaluate the program over a series of trials with different combinations of instructions and few-shot examples to find the optimal combination using Bayesian Optimization.
+
+2025/07/22 15:05:57 INFO dspy.teleprompt.mipro_optimizer_v2: == Trial 1 / 7 - Full Evaluation of Default Program ==
+o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": [20, 30], "explanation": "Thursday's 1-mile walk boosts calorie burn; a 20-30 min Low Impact Cardio session supports weight goals"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': [20, 30], 'explanation': "Thursday's 1-mile walk boosts calorie burn; a 20-30 min Low Impact Cardio session supports weight goals"}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Gives only a cursory nod to Thursday’s 1-mile walk and repeats a generic weight-loss claim (“boosts calorie burn”). No discussion of the user’s heavy walking volume, recent strength work, or the overload/recovery balance. Explanation is surface-level and does not justify why *more* low-impact cardio (vs strength, rest, or mobility) is the smartest next step.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "References Thursday’s 1-mile walk and intentionally pivots to 30-min Full-Body Strength, providing a basic rationale (metabolic boost, lean-muscle building) that complements the user’s cardio-heavy history. While still brief, it shows awareness of workout variety and goal alignment, offering a clearer, more nuanced link between history, goal, and recommendation than the model response."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Gives only a cursory nod to Thursday’s 1-mile walk and repeats a generic weight-loss claim (“boosts calorie burn”). No discussion of the user’s heavy walking volume, recent strength work, or the overload/recovery balance. Explanation is surface-level and does not justify why *more* low-impact cardio (vs strength, rest, or mobility) is the smartest next step.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'References Thursday’s 1-mile walk and intentionally pivots to 30-min Full-Body Strength, providing a basic rationale (metabolic boost, lean-muscle building) that complements the user’s cardio-heavy history. While still brief, it shows awareness of workout variety and goal alignment, offering a clearer, more nuanced link between history, goal, and recommendation than the model response.'}}
+Bootstrapped 1 full traces after 1 examples for up to 1 rounds, amounting to 1 attempts.
+  0%|          | 0/2 [00:00<?, ?it/s]2025-07-22 15:05:57,247 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:05:57,248 - httpcore.connection - DEBUG - connect_tcp.started host='openrouter.ai' port=443 local_address=None timeout=600.0 socket_options=None
+2025-07-22 15:05:57,248 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:05:57,248 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:05:57,248 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:05:57,248 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:05:57,299 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf2a6b0>
+2025-07-22 15:05:57,299 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x13c2974c0> server_hostname='openrouter.ai' timeout=600.0
+2025-07-22 15:05:57,331 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf2b0d0>
+2025-07-22 15:05:57,331 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:05:57,331 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:05:57,332 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:05:57,332 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:05:57,332 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:05:57,470 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:05:57 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363e114c91a2b3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:05:57,471 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:05:59,896 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:05:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363e11d92d7eab-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:05:59,896 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:06:04,365 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:06:04,366 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:06:04,366 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:06:04,389 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:04,389 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:06:04,389 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:06:04,389 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:06:04,389 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:04,722 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:06:04 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363e3de98ea2b3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:06:04,723 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:06:09,805 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:06:09,805 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:06:09,805 - httpcore.http11 - DEBUG - response_closed.complete
+o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": ["Bodyweight Strength", "Lower Body Strength"],
+    "durations": ["20", "30"],
+    "explanation": "After 3 walking sessions, focus on strength with bodyweight exercises"
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Bodyweight Strength', 'Lower Body Strength'], 'durations': ['20', '30'], 'explanation': 'After 3 walking sessions, focus on strength with bodyweight exercises'}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": "Low Impact Cardio, Walking",
+    "durations": "20, 30",
+    "explanation": "Following 20 min walk, boost cardio with low-impact"
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': 'Low Impact Cardio, Walking', 'durations': '20, 30', 'explanation': 'Following 20 min walk, boost cardio with low-impact'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Provides a bare-bones statement: \\"Following 20 min walk, boost cardio with low-impact.\\"  It doesn’t cite any concrete workout from the user’s log (many walks of varying lengths exist) nor explain why a low-impact cardio choice supports progressive overload, recovery, or variety.  No expert nuance or pattern analysis is shown.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Mentions a specific recent session (\\"Thursday\'s 22-min walk\\") and ties it to the recommendation of a 20-30 min Beginner Run to \\"boost your aerobic engine\\" and maintain the long streak.  The rationale is concise and goal-directed, though it could delve deeper into intensity zones or recovery needs."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Provides a bare-bones statement: "Following 20 min walk, boost cardio with low-impact."  It doesn’t cite any concrete workout from the user’s log (many walks of varying lengths exist) nor explain why a low-impact cardio choice supports progressive overload, recovery, or variety.  No expert nuance or pattern analysis is shown.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Mentions a specific recent session ("Thursday\'s 22-min walk") and ties it to the recommendation of a 20-30 min Beginner Run to "boost your aerobic engine" and maintain the long streak.  The rationale is concise and goal-directed, though it could delve deeper into intensity zones or recovery needs.'}}
+Average Metric: 0.50 / 1 (50.0%):  50%|█████     | 1/2 [00:12<00:12, 12.57s/it]2025-07-22 15:06:30,632 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:06:30,633 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:06:30,633 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:06:30,634 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:06:30,635 - httpcore.connection - DEBUG - close.complete
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "The model notes the user completed three walking sessions and suggests shifting to strength, but the analysis is brief and omits the overwhelmingly meditation-heavy pattern and recent rest-oriented sessions. It provides no explanation of overload, recovery needs, or why body-weight/lower-body work specifically supports the goal.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "The mini response ties today’s recommendation to the very last workout (\'Thursday’s 10-min Deep Relaxation\') and explains that recovery opens the door for a strength stimulus, aligning with the user’s goal. While still fairly high-level, it shows a clearer connection between recovery and the proposed beginner strength block than the model response."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'The model notes the user completed three walking sessions and suggests shifting to strength, but the analysis is brief and omits the overwhelmingly meditation-heavy pattern and recent rest-oriented sessions. It provides no explanation of overload, recovery needs, or why body-weight/lower-body work specifically supports the goal.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': "The mini response ties today’s recommendation to the very last workout ('Thursday’s 10-min Deep Relaxation') and explains that recovery opens the door for a strength stimulus, aligning with the user’s goal. While still fairly high-level, it shows a clearer connection between recovery and the proposed beginner strength block than the model response."}}
+Average Metric: 1.17 / 2 (58.3%): 100%|██████████| 2/2 [00:33<00:00, 16.70s/it]2025/07/22 15:06:30 INFO dspy.evaluate.evaluate: Average Metric: 1.1666666666666665 / 2 (58.3%)
+2025/07/22 15:06:30 INFO dspy.teleprompt.mipro_optimizer_v2: Default program score: 58.33
+
+/opt/homebrew/anaconda3/envs/prompt-ops-local/lib/python3.10/site-packages/optuna/_experimental.py:32: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+2025/07/22 15:06:30 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 2 / 7 =====
+2025-07-22 15:06:30,670 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:30,675 - httpcore.connection - DEBUG - connect_tcp.started host='openrouter.ai' port=443 local_address=None timeout=600.0 socket_options=None
+2025-07-22 15:06:30,675 - httpcore.http11 - DEBUG - send_request_headers.complete
+
+  0%|          | 0/2 [00:00<?, ?it/s]2025-07-22 15:06:30,675 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:06:30,676 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:06:30,676 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:30,704 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf299c0>
+2025-07-22 15:06:30,704 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x13c2974c0> server_hostname='openrouter.ai' timeout=600.0
+2025-07-22 15:06:30,738 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf2ba30>
+2025-07-22 15:06:30,738 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:30,738 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:06:30,738 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:06:30,796 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:06:30,796 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:31,160 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:06:31 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363ee23bc6a2b3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:06:31,162 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:06:37,450 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:06:37,451 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:06:37,451 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:06:37,463 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:37,463 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:06:37,463 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:06:37,464 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:06:37,464 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:37,742 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:06:37 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363f0c99e3a2b3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:06:37,742 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:06:38,473 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:06:38 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363ee2af2c7be3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:06:38,474 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:06:39,841 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:06:39,841 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:06:39,841 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:06:39,851 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:39,851 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:06:39,851 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:06:39,851 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:06:39,851 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:06:40,251 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:06:40 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363f1b9bf97be3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:06:40,252 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:06:56,782 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:06:56,783 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:06:56,783 - httpcore.http11 - DEBUG - response_closed.complete
+o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {"class_types": ["Bodyweight Strength"], "durations": ["20"], "explanation": "Thursday's 10-min Deep Relaxation calmed the mind; now a 20-min Bodyweight Strength session ignites full-body strength gains"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Bodyweight Strength'], 'durations': ['20'], 'explanation': "Thursday's 10-min Deep Relaxation calmed the mind; now a 20-min Bodyweight Strength session ignites full-body strength gains"}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": ["30"], "explanation": "20-min walks fueled your week—now a 30-min Low Impact Cardio session boosts cardio fitness & keeps progress rolling"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': ['30'], 'explanation': '20-min walks fueled your week—now a 30-min Low Impact Cardio session boosts cardio fitness & keeps progress rolling'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Mentions the most recent 10-min Deep Relaxation and suggests a 20-min Bodyweight Strength to ‘ignite full-body gains’, but offers no analysis of the user’s long streak of low-intensity mindfulness work, absence of recent strength training, or why body-weight specifically supports a strength-building progression. Insight remains surface-level.",\n  "o4_mini_response_insight_score": 4,\n  "o4_mini_response_insight_reasoning": "Also references Thursday’s 10-min Deep Relaxation and proposes a 20–30-min Beginner Strength block. Provides a slightly clearer rationale—‘lay your muscle foundation’—and offers a duration progression option, showing a hint of overload planning. Still lacks deeper pattern analysis or expert nuance, but edges out the model response."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Mentions the most recent 10-min Deep Relaxation and suggests a 20-min Bodyweight Strength to ‘ignite full-body gains’, but offers no analysis of the user’s long streak of low-intensity mindfulness work, absence of recent strength training, or why body-weight specifically supports a strength-building progression. Insight remains surface-level.', 'o4_mini_response_insight_score': 4, 'o4_mini_response_insight_reasoning': 'Also references Thursday’s 10-min Deep Relaxation and proposes a 20–30-min Beginner Strength block. Provides a slightly clearer rationale—‘lay your muscle foundation’—and offers a duration progression option, showing a hint of overload planning. Still lacks deeper pattern analysis or expert nuance, but edges out the model response.'}}
+Average Metric: 0.75 / 1 (75.0%):  50%|█████     | 1/2 [00:26<00:26, 26.11s/it]2025-07-22 15:07:15,647 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:07:15,648 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:07:15,648 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:07:15,649 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:07:15,650 - httpcore.connection - DEBUG - close.complete
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Mentions that the user did \\"20-min walks\\" but gives no concrete example (date, distance, HR, etc.) nor any training principle beyond a vague promise of “boosts cardio fitness.” It does not explain why Low-Impact Cardio is the logical next step (over-load, recovery, variety) or connect to the user’s streak length and predominately walking history.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Cites \\"Thursday\'s 22-min walk,\\" showing it skimmed the log and spotted a concrete session. It offers a progression rationale—moving from walking to a short Beginner Run to stress the aerobic engine while honoring the streak. The analysis is still brief and lacks deeper discussion of intensity zones or recovery needs, but it connects the user’s recent activity pattern to the recommendation more clearly than the model response."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Mentions that the user did "20-min walks" but gives no concrete example (date, distance, HR, etc.) nor any training principle beyond a vague promise of “boosts cardio fitness.” It does not explain why Low-Impact Cardio is the logical next step (over-load, recovery, variety) or connect to the user’s streak length and predominately walking history.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Cites "Thursday\'s 22-min walk," showing it skimmed the log and spotted a concrete session. It offers a progression rationale—moving from walking to a short Beginner Run to stress the aerobic engine while honoring the streak. The analysis is still brief and lacks deeper discussion of intensity zones or recovery needs, but it connects the user’s recent activity pattern to the recommendation more clearly than the model response.'}}
+Average Metric: 1.42 / 2 (70.8%): 100%|██████████| 2/2 [00:44<00:00, 22.49s/it]2025/07/22 15:07:15 INFO dspy.evaluate.evaluate: Average Metric: 1.4166666666666665 / 2 (70.8%)
+2025/07/22 15:07:15 INFO dspy.teleprompt.mipro_optimizer_v2: Best full score so far! Score: 70.83
+2025/07/22 15:07:15 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 70.83 with parameters ['Predictor 0: Instruction 1', 'Predictor 0: Few-Shot Set 1'].
+2025/07/22 15:07:15 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [58.33, 70.83]
+2025/07/22 15:07:15 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 70.83
+2025/07/22 15:07:15 INFO dspy.teleprompt.mipro_optimizer_v2: =======================
+
+
+2025/07/22 15:07:15 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 3 / 7 =====
+2025-07-22 15:07:15,670 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+
+  0%|          | 0/2 [00:00<?, ?it/s]2025-07-22 15:07:15,671 - httpcore.connection - DEBUG - connect_tcp.started host='openrouter.ai' port=443 local_address=None timeout=600.0 socket_options=None
+2025-07-22 15:07:15,671 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:07:15,671 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:07:15,671 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:07:15,671 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:07:15,697 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf29c90>
+2025-07-22 15:07:15,697 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x13c2974c0> server_hostname='openrouter.ai' timeout=600.0
+2025-07-22 15:07:15,729 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf2a710>
+2025-07-22 15:07:15,729 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:07:15,729 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:07:15,729 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:07:15,785 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:07:15,785 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:07:18,434 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:07:18 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363ffb7bec7be3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:07:18,435 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:07:18,516 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:07:18 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96363ffbdf600fc9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:07:18,516 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:07:32,760 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:07:32,761 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:07:32,761 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:07:32,772 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:07:32,772 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:07:32,772 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:07:32,773 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:07:32,773 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:07:33,155 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:07:33 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963640664e037be3-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:07:33,156 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:07:39,457 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:07:39,458 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:07:39,458 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:07:39,470 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:07:39,471 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:07:39,471 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:07:39,471 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:07:39,471 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:07:39,824 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:07:39 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963640903fc80fc9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:07:39,824 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:07:50,896 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:07:50,896 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:07:50,896 - httpcore.http11 - DEBUG - response_closed.complete
+o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {"class_types": ["Upper Body Strength"], "durations": [30], "explanation": "A 30-min Upper Body Strength session will help build lean muscle to support your strength goal, following a relaxing meditation session"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Upper Body Strength'], 'durations': [30], 'explanation': 'A 30-min Upper Body Strength session will help build lean muscle to support your strength goal, following a relaxing meditation session'}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {"class_types": ["Cardio"], "durations": ["45"], "explanation": "Thursday's 2.8-mile walk set the pace—now a 45-min Cardio session will boost endurance & burn calories to power your fitness goal"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Cardio'], 'durations': ['45'], 'explanation': "Thursday's 2.8-mile walk set the pace—now a 45-min Cardio session will boost endurance & burn calories to power your fitness goal"}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Gives a generic nod to the last meditation and states that upper-body work will \\"build lean muscle.\\" It doesn’t acknowledge the complete absence of prior strength training, the dominance of recovery-oriented sessions, or explain why an upper-body focus (vs total-body or foundational work) is the logical next step for progressive overload.",\n  "o4_mini_response_insight_score": 4,\n  "o4_mini_response_insight_reasoning": "Slightly more tailored: it points to Thursday’s 10-min Deep Relaxation and correctly labels the user as a beginner in strength based on the history. However, the insight is still brief and motivational rather than analytical, with no discussion of volume progression, frequency, or why 20-30 min is appropriate beyond a vague “reset.”"\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Gives a generic nod to the last meditation and states that upper-body work will "build lean muscle." It doesn’t acknowledge the complete absence of prior strength training, the dominance of recovery-oriented sessions, or explain why an upper-body focus (vs total-body or foundational work) is the logical next step for progressive overload.', 'o4_mini_response_insight_score': 4, 'o4_mini_response_insight_reasoning': 'Slightly more tailored: it points to Thursday’s 10-min Deep Relaxation and correctly labels the user as a beginner in strength based on the history. However, the insight is still brief and motivational rather than analytical, with no discussion of volume progression, frequency, or why 20-30 min is appropriate beyond a vague “reset.”'}}
+Average Metric: 0.75 / 1 (75.0%):  50%|█████     | 1/2 [00:35<00:35, 35.23s/it]2025-07-22 15:08:05,023 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:08:05,024 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:08:05,024 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:08:05,024 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:08:05,025 - httpcore.connection - DEBUG - close.complete
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 5,\n  "model_response_insight_reasoning": "References the long 2.8-mile walk and links it to a call for a longer, 45-min cardio block, pointing out endurance and calorie burn. However, the advice is broad (undefined “Cardio” class) with no nuance about intensity zones, progressive overload, or how the user’s many low-intensity walks and streak fatigue should influence today’s volume. It’s slightly more than generic, but not deeply tailored.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Also cites a specific recent walk (\\"Thursday\'s 22-min walk\\"), then justifies a beginner run as the next logical aerobic progression, explicitly connecting foundation work to stepping up intensity and acknowledging the user’s streak motivation. While still brief, it demonstrates a clearer training progression concept than the model’s generic cardio suggestion."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 5, 'model_response_insight_reasoning': 'References the long 2.8-mile walk and links it to a call for a longer, 45-min cardio block, pointing out endurance and calorie burn. However, the advice is broad (undefined “Cardio” class) with no nuance about intensity zones, progressive overload, or how the user’s many low-intensity walks and streak fatigue should influence today’s volume. It’s slightly more than generic, but not deeply tailored.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Also cites a specific recent walk ("Thursday\'s 22-min walk"), then justifies a beginner run as the next logical aerobic progression, explicitly connecting foundation work to stepping up intensity and acknowledging the user’s streak motivation. While still brief, it demonstrates a clearer training progression concept than the model’s generic cardio suggestion.'}}
+Average Metric: 1.58 / 2 (79.2%): 100%|██████████| 2/2 [00:49<00:00, 24.68s/it]2025/07/22 15:08:05 INFO dspy.evaluate.evaluate: Average Metric: 1.5833333333333335 / 2 (79.2%)
+2025/07/22 15:08:05 INFO dspy.teleprompt.mipro_optimizer_v2: Best full score so far! Score: 79.17
+2025/07/22 15:08:05 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 79.17 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 1'].
+2025/07/22 15:08:05 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [58.33, 70.83, 79.17]
+2025/07/22 15:08:05 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 79.17
+2025/07/22 15:08:05 INFO dspy.teleprompt.mipro_optimizer_v2: =======================
+
+
+2025/07/22 15:08:05 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 4 / 7 =====
+2025-07-22 15:08:05,043 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:05,047 - httpcore.connection - DEBUG - connect_tcp.started host='openrouter.ai' port=443 local_address=None timeout=600.0 socket_options=None
+
+  0%|          | 0/2 [00:00<?, ?it/s]2025-07-22 15:08:05,048 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:08:05,048 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:08:05,049 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:08:05,049 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:05,077 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf2a440>
+2025-07-22 15:08:05,077 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x13c2974c0> server_hostname='openrouter.ai' timeout=600.0
+2025-07-22 15:08:05,119 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bf2bac0>
+2025-07-22 15:08:05,119 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:05,119 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:08:05,120 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:08:05,173 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:08:05,173 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:07,758 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:08:07 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963641300e1a0fc9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:08:07,759 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:08:11,863 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:08:11 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963641308d9f2b84-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:08:11,865 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:08:13,420 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:08:13,421 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:08:13,421 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:08:13,428 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:13,428 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:08:13,428 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:08:13,429 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:08:13,429 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:13,835 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:08:13 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963641646c3e2b84-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:08:13,837 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:08:22,401 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:08:22,402 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:08:22,402 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:08:22,412 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:22,412 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:08:22,412 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:08:22,413 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:08:22,413 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:22,819 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:08:22 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9636419c8d330fc9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:08:22,820 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:08:42,260 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:08:42,260 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:08:42,260 - httpcore.http11 - DEBUG - response_closed.complete
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {"class_types": ["High Intensity Interval Training"], "durations": [20, 30], "explanation": "Thursday's 2.8-mile walk boosts calorie burn; a 20-30 min High Intensity Interval Training session supports cardio goals"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['High Intensity Interval Training'], 'durations': [20, 30], 'explanation': "Thursday's 2.8-mile walk boosts calorie burn; a 20-30 min High Intensity Interval Training session supports cardio goals"}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {"class_types": ["Upper Body Strength"], "durations": [20], "explanation": "To build strength, focus on 20-min Upper Body Strength to target key muscle groups and enhance overall fitness"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Upper Body Strength'], 'durations': [20], 'explanation': 'To build strength, focus on 20-min Upper Body Strength to target key muscle groups and enhance overall fitness'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Gives a single (and slightly incorrect) reference to the user’s history – it calls out a “Thursday 2.8-mile walk,” but that longer 2.8-mile session actually happened on Wednesday, while Thursday’s walk was only 0.76 mi. The rationale is very surface-level (“HIIT supports cardio goals”) with no discussion of training load, recovery, or why HIIT is the right step after many low-intensity walks. Shows limited understanding of the pattern (daily low-intensity volume) and provides no nuanced linkage to overload or progression.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Correctly notices Thursday’s ~22-minute walk and frames it as a foundation before progressing to a beginner run, which aligns with the user’s cardio goal and introduces moderate overload. Briefly explains why the suggested class advances aerobic development and keeps the streak alive. While concise and not deeply technical, it demonstrates a clearer, more accurate connection between recent activity, progression, and the recommendation than the model response."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Gives a single (and slightly incorrect) reference to the user’s history – it calls out a “Thursday 2.8-mile walk,” but that longer 2.8-mile session actually happened on Wednesday, while Thursday’s walk was only 0.76 mi. The rationale is very surface-level (“HIIT supports cardio goals”) with no discussion of training load, recovery, or why HIIT is the right step after many low-intensity walks. Shows limited understanding of the pattern (daily low-intensity volume) and provides no nuanced linkage to overload or progression.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Correctly notices Thursday’s ~22-minute walk and frames it as a foundation before progressing to a beginner run, which aligns with the user’s cardio goal and introduces moderate overload. Briefly explains why the suggested class advances aerobic development and keeps the streak alive. While concise and not deeply technical, it demonstrates a clearer, more accurate connection between recent activity, progression, and the recommendation than the model response.'}}
+Average Metric: 0.67 / 1 (66.7%):  50%|█████     | 1/2 [00:37<00:37, 37.22s/it]2025-07-22 15:08:54,331 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:08:54,331 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:08:54,331 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:08:54,331 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:08:54,332 - httpcore.connection - DEBUG - close.complete
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Provides only a generic link between a 20-min upper-body class and the goal of building strength. It does not acknowledge that the user has logged zero strength training, makes no reference to any of the 11 recorded sessions, and offers no explanation about progression, recovery, or why upper-body is the priority. Insight is minimal and non-personalized.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "Mentions Thursday’s 10-min Deep Relaxation, showing it looked at the actual log, and correctly positions a Beginner Strength block as the next step for someone with no recent strength work. The rationale (\\"lay your muscle foundation\\") reflects a basic overload/progression idea, but analysis stops there—no discussion of volume tolerance, split selection, or how it fits broader patterns. Moderately personalized but still somewhat surface-level."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Provides only a generic link between a 20-min upper-body class and the goal of building strength. It does not acknowledge that the user has logged zero strength training, makes no reference to any of the 11 recorded sessions, and offers no explanation about progression, recovery, or why upper-body is the priority. Insight is minimal and non-personalized.', 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'Mentions Thursday’s 10-min Deep Relaxation, showing it looked at the actual log, and correctly positions a Beginner Strength block as the next step for someone with no recent strength work. The rationale ("lay your muscle foundation") reflects a basic overload/progression idea, but analysis stops there—no discussion of volume tolerance, split selection, or how it fits broader patterns. Moderately personalized but still somewhat surface-level.'}}
+Average Metric: 1.27 / 2 (63.3%): 100%|██████████| 2/2 [00:49<00:00, 24.65s/it]2025/07/22 15:08:54 INFO dspy.evaluate.evaluate: Average Metric: 1.2666666666666666 / 2 (63.3%)
+2025/07/22 15:08:54 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 63.33 with parameters ['Predictor 0: Instruction 4', 'Predictor 0: Few-Shot Set 1'].
+2025/07/22 15:08:54 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [58.33, 70.83, 79.17, 63.33]
+2025/07/22 15:08:54 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 79.17
+2025/07/22 15:08:54 INFO dspy.teleprompt.mipro_optimizer_v2: =======================
+
+
+2025/07/22 15:08:54 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 5 / 7 =====
+
+  0%|          | 0/2 [00:00<?, ?it/s]2025-07-22 15:08:54,346 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:54,348 - httpcore.connection - DEBUG - connect_tcp.started host='openrouter.ai' port=443 local_address=None timeout=600.0 socket_options=None
+2025-07-22 15:08:54,348 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:08:54,348 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:08:54,349 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:08:54,349 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:54,369 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16c492b90>
+2025-07-22 15:08:54,369 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x13c2974c0> server_hostname='openrouter.ai' timeout=600.0
+2025-07-22 15:08:54,400 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16d304c10>
+2025-07-22 15:08:54,400 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:54,401 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:08:54,401 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:08:54,401 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:08:54,401 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:54,935 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:08:54 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96364264297b0fc9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:08:54,937 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:08:57,109 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:08:57 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963642647c4af7b9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:08:57,110 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:08:59,786 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:08:59,787 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:08:59,788 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:08:59,811 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:08:59,812 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:08:59,812 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:08:59,812 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:08:59,812 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:00,273 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:09:00 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963642864dd00fc9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:09:00,275 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:09:12,032 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:09:12,032 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:09:12,033 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:09:12,048 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:12,048 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:09:12,048 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:09:12,049 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:09:12,049 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:12,389 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:09:12 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963642d2ccfff7b9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:09:12,389 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:09:17,567 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:09:17,568 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:09:17,568 - httpcore.http11 - DEBUG - response_closed.complete
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {"class_types": ["Cardio"], "durations": [45], "explanation": "Thursday's 20-min walk set the pace—now a 45-min Cardio session will fire metabolism & boost endurance to power your fitness goal"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Cardio'], 'durations': [45], 'explanation': "Thursday's 20-min walk set the pace—now a 45-min Cardio session will fire metabolism & boost endurance to power your fitness goal"}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {"class_types": ["Upper Body Strength"], "durations": [30], "explanation": "To build strength, a 30-min Upper Body Strength session will target your arms, shoulders, and back, helping you achieve a balanced physique"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Upper Body Strength'], 'durations': [30], 'explanation': 'To build strength, a 30-min Upper Body Strength session will target your arms, shoulders, and back, helping you achieve a balanced physique'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Touches on the most-recent walk but offers a vague \\"45-min Cardio\\" class with no acknowledgement that the user’s training is almost exclusively short walks. The jump in duration isn’t justified, and the benefits cited (\\"fire metabolism & boost endurance\\") are generic with little linkage to the user’s pattern, overload needs, or recovery.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Cites Thursday’s 22-min walk and recommends progressing to a 20–30-min Beginner Run— a logical next step from steady walking that aligns with the cardio-fitness goal. Provides a concise rationale (foundation → run to boost aerobic engine, maintain streak). Insight is clear but still fairly surface-level, without deeper analysis of weekly volume or recovery."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Touches on the most-recent walk but offers a vague "45-min Cardio" class with no acknowledgement that the user’s training is almost exclusively short walks. The jump in duration isn’t justified, and the benefits cited ("fire metabolism & boost endurance") are generic with little linkage to the user’s pattern, overload needs, or recovery.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Cites Thursday’s 22-min walk and recommends progressing to a 20–30-min Beginner Run— a logical next step from steady walking that aligns with the cardio-fitness goal. Provides a concise rationale (foundation → run to boost aerobic engine, maintain streak). Insight is clear but still fairly surface-level, without deeper analysis of weekly volume or recovery.'}}
+Average Metric: 0.67 / 1 (66.7%):  50%|█████     | 1/2 [00:23<00:23, 23.23s/it]2025-07-22 15:09:36,039 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:09:36,040 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:09:36,040 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:09:36,040 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:09:36,040 - httpcore.connection - DEBUG - close.complete
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "The explanation is generic: it restates the user\'s goal and lists muscle groups worked in an upper-body class. It does not reference the user’s actual activity pattern (heavy on meditation/walking, zero strength so far) nor explain why 30 min is an appropriate overload or how it fits recovery timing after their last session.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "The insight mentions Thursday’s 10-min Deep Relaxation, showing awareness of the most recent activity, and justifies a Beginner Strength block as foundational after a recovery-focused day. The rationale is still brief and motivational rather than technical, but it makes a basic connection between the user’s history (no strength yet) and the recommendation."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': "The explanation is generic: it restates the user's goal and lists muscle groups worked in an upper-body class. It does not reference the user’s actual activity pattern (heavy on meditation/walking, zero strength so far) nor explain why 30 min is an appropriate overload or how it fits recovery timing after their last session.", 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'The insight mentions Thursday’s 10-min Deep Relaxation, showing awareness of the most recent activity, and justifies a Beginner Strength block as foundational after a recovery-focused day. The rationale is still brief and motivational rather than technical, but it makes a basic connection between the user’s history (no strength yet) and the recommendation.'}}
+Average Metric: 1.27 / 2 (63.3%): 100%|██████████| 2/2 [00:41<00:00, 20.85s/it]2025/07/22 15:09:36 INFO dspy.evaluate.evaluate: Average Metric: 1.2666666666666666 / 2 (63.3%)
+2025/07/22 15:09:36 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 63.33 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 1'].
+2025/07/22 15:09:36 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [58.33, 70.83, 79.17, 63.33, 63.33]
+2025/07/22 15:09:36 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 79.17
+2025/07/22 15:09:36 INFO dspy.teleprompt.mipro_optimizer_v2: =======================
+
+
+2025/07/22 15:09:36 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 6 / 7 =====
+2025-07-22 15:09:36,057 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:36,061 - httpcore.connection - DEBUG - connect_tcp.started host='openrouter.ai' port=443 local_address=None timeout=600.0 socket_options=None
+
+  0%|          | 0/2 [00:00<?, ?it/s]2025-07-22 15:09:36,061 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:09:36,062 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:09:36,062 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:09:36,062 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:36,083 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16c4341c0>
+2025-07-22 15:09:36,083 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x13c2974c0> server_hostname='openrouter.ai' timeout=600.0
+2025-07-22 15:09:36,120 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16c435c30>
+2025-07-22 15:09:36,120 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:36,120 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:09:36,121 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:09:36,171 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:09:36,172 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:36,594 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:09:36 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963643693e9d25da-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:09:36,594 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:09:42,293 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:09:42,293 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:09:42,293 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:09:42,304 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:42,304 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:09:42,304 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:09:42,304 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:09:42,304 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:43,185 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:09:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9636438fed6525da-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:09:43,185 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:09:44,244 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:09:44 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96364368dec4f7b9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:09:44,244 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:09:46,811 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:09:46,812 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:09:46,812 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:09:46,825 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:46,825 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:09:46,825 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:09:46,825 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:09:46,825 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:09:47,136 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:09:47 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963643ac2d13f7b9-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:09:47,136 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:10:03,130 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:10:03,130 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:10:03,130 - httpcore.http11 - DEBUG - response_closed.complete
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": [20, 30], "explanation": "Thursday's 1-mile walk boosts calorie burn; a 20-30 min Low Impact Cardio session supports cardio fitness goal"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': [20, 30], 'explanation': "Thursday's 1-mile walk boosts calorie burn; a 20-30 min Low Impact Cardio session supports cardio fitness goal"}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {"class_types": ["Upper Body Strength"], "durations": [20, 30], "explanation": "Recent meditation sessions set mental foundation—now Upper Body Strength targets arms & chest to build power for strength goal"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Upper Body Strength'], 'durations': [20, 30], 'explanation': 'Recent meditation sessions set mental foundation—now Upper Body Strength targets arms & chest to build power for strength goal'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Provides a very general link between \\"recent meditation\\" and doing an upper-body workout. No concrete mention of any specific session (e.g., Thursday’s 10-min Deep Relaxation) or pattern in frequency/duration. Rationale is surface-level (\\"targets arms & chest\\") without discussion of overload, recovery or why upper-body is timely for this user.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "At least cites Thursday’s 10-min Deep Relaxation and frames it as a reset before introducing strength work, showing some minimal personalization. Still largely motivational and lacks deeper analysis of the user’s absence of strength training, recovery status, or how Beginner Strength fits progressive overload, so only moderately insightful."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Provides a very general link between "recent meditation" and doing an upper-body workout. No concrete mention of any specific session (e.g., Thursday’s 10-min Deep Relaxation) or pattern in frequency/duration. Rationale is surface-level ("targets arms & chest") without discussion of overload, recovery or why upper-body is timely for this user.', 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'At least cites Thursday’s 10-min Deep Relaxation and frames it as a reset before introducing strength work, showing some minimal personalization. Still largely motivational and lacks deeper analysis of the user’s absence of strength training, recovery status, or how Beginner Strength fits progressive overload, so only moderately insightful.'}}
+Average Metric: 0.60 / 1 (60.0%):  50%|█████     | 1/2 [00:27<00:27, 27.07s/it]2025-07-22 15:10:36,002 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:10:36,002 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:10:36,002 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:10:36,007 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:10:36,009 - httpcore.connection - DEBUG - close.complete
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Mentions the most recent Thursday walk but only notes it \'boosts calorie burn\' – a very generic observation. Provides no discussion of training progression, overload, recovery, or why low-impact cardio is the next logical step for this user’s long streak of mostly easy walks. Insight is surface-level and largely disconnected from the detailed workout history.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "References Thursday’s 22-minute walk and links it to building a foundation, suggesting a Beginner Run to advance aerobic capacity and acknowledging the user’s long streak. Offers a basic rationale (foundation → progression) that shows some awareness of training principles, though still fairly brief and lacking deeper pattern analysis."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': "Mentions the most recent Thursday walk but only notes it 'boosts calorie burn' – a very generic observation. Provides no discussion of training progression, overload, recovery, or why low-impact cardio is the next logical step for this user’s long streak of mostly easy walks. Insight is surface-level and largely disconnected from the detailed workout history.", 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'References Thursday’s 22-minute walk and links it to building a foundation, suggesting a Beginner Run to advance aerobic capacity and acknowledging the user’s long streak. Offers a basic rationale (foundation → progression) that shows some awareness of training principles, though still fairly brief and lacking deeper pattern analysis.'}}
+Average Metric: 1.20 / 2 (60.0%): 100%|██████████| 2/2 [00:59<00:00, 29.98s/it]2025/07/22 15:10:36 INFO dspy.evaluate.evaluate: Average Metric: 1.2 / 2 (60.0%)
+2025/07/22 15:10:36 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 60.0 with parameters ['Predictor 0: Instruction 4', 'Predictor 0: Few-Shot Set 3'].
+2025/07/22 15:10:36 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [58.33, 70.83, 79.17, 63.33, 63.33, 60.0]
+2025/07/22 15:10:36 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 79.17
+2025/07/22 15:10:36 INFO dspy.teleprompt.mipro_optimizer_v2: =======================
+
+
+2025/07/22 15:10:36 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 7 / 7 =====
+
+  0%|          | 0/2 [00:00<?, ?it/s]2025-07-22 15:10:36,026 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:36,026 - httpcore.connection - DEBUG - connect_tcp.started host='openrouter.ai' port=443 local_address=None timeout=600.0 socket_options=None
+2025-07-22 15:10:36,026 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:10:36,026 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:10:36,027 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:10:36,027 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:36,045 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16c491e10>
+2025-07-22 15:10:36,045 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x13c2974c0> server_hostname='openrouter.ai' timeout=600.0
+2025-07-22 15:10:36,075 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x16bec9480>
+2025-07-22 15:10:36,075 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:36,075 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:10:36,075 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:10:36,125 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:10:36,125 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:38,757 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:10:38 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963644dfac2325da-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:10:38,758 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:10:38,790 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:10:38 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'963644dffadef7dd-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:10:38,792 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:10:53,928 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:10:53,928 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:10:53,929 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:10:53,939 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:53,940 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:10:53,940 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:10:53,940 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:10:53,940 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:54,551 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:10:54 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9636454fa9d625da-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:10:54,551 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:10:56,966 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:10:56,966 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:10:56,966 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:10:56,979 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:56,980 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-07-22 15:10:56,980 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-07-22 15:10:56,980 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-07-22 15:10:56,980 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-07-22 15:10:57,505 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 22 Jul 2025 22:10:57 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Access-Control-Allow-Origin', b'*'), (b'Vary', b'Accept-Encoding'), (b'Permissions-Policy', b'payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com" "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")'), (b'Referrer-Policy', b'no-referrer, strict-origin-when-cross-origin'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'96364562aa70f7dd-LAX'), (b'Content-Encoding', b'gzip')])
+2025-07-22 15:10:57,506 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-07-22 15:11:05,595 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:11:05,595 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:11:05,595 - httpcore.http11 - DEBUG - response_closed.complete
+o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {"class_types": ["Bodyweight Strength"], "durations": ["20"], "explanation": "Morning meditation sets intention; 20-min Bodyweight Strength ignites muscle growth for your strength goal"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Bodyweight Strength'], 'durations': ['20'], 'explanation': 'Morning meditation sets intention; 20-min Bodyweight Strength ignites muscle growth for your strength goal'}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {"class_types": ["Intervals Run"], "durations": ["30"], "explanation": "Thursday's 0.75-mile walk set the pace—now a 30-min Intervals Run boosts cardio fitness and burns calories to power your goal"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Intervals Run'], 'durations': ['30'], 'explanation': "Thursday's 0.75-mile walk set the pace—now a 30-min Intervals Run boosts cardio fitness and burns calories to power your goal"}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Only a generic nod to \'morning meditation\' with no clear tie-in to the user’s actual recent sessions (last one was a Deep Relaxation at night). Gives a surface-level rationale (\'ignite muscle growth\') without discussing overload, progression, or why body-weight is appropriate after a long stretch of non-strength work.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "Mentions the exact last workout (“Thursday’s 10-min Deep Relaxation”) and links that recovery session to starting Beginner Strength to build a foundation. Still brief and motivational rather than technical, but it at least recognises the user hasn’t done strength work yet and suggests an entry-level option."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': "Only a generic nod to 'morning meditation' with no clear tie-in to the user’s actual recent sessions (last one was a Deep Relaxation at night). Gives a surface-level rationale ('ignite muscle growth') without discussing overload, progression, or why body-weight is appropriate after a long stretch of non-strength work.", 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'Mentions the exact last workout (“Thursday’s 10-min Deep Relaxation”) and links that recovery session to starting Beginner Strength to build a foundation. Still brief and motivational rather than technical, but it at least recognises the user hasn’t done strength work yet and suggests an entry-level option.'}}
+Average Metric: 0.60 / 1 (60.0%):  50%|█████     | 1/2 [00:29<00:29, 29.57s/it]2025-07-22 15:11:46,413 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-07-22 15:11:46,414 - httpcore.http11 - DEBUG - response_closed.started
+2025-07-22 15:11:46,414 - httpcore.http11 - DEBUG - response_closed.complete
+2025-07-22 15:11:46,414 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:11:46,415 - httpcore.connection - DEBUG - close.complete
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Mentions Thursday’s 0.75-mile walk and links an Intervals Run to cardio and calorie burn, but offers almost no explanation of why intervals are an appropriate next step for someone who has only walked at low intensities. The insight is surface-level and misses training-progression nuance.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "References the recent 22-min walk and frames it as foundation work, then recommends a Beginner Run as the logical progression to build aerobic capacity. Still brief, but shows a clearer grasp of overload and safety for a walker moving toward running."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Mentions Thursday’s 0.75-mile walk and links an Intervals Run to cardio and calorie burn, but offers almost no explanation of why intervals are an appropriate next step for someone who has only walked at low intensities. The insight is surface-level and misses training-progression nuance.', 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'References the recent 22-min walk and frames it as foundation work, then recommends a Beginner Run as the logical progression to build aerobic capacity. Still brief, but shows a clearer grasp of overload and safety for a walker moving toward running.'}}
+Average Metric: 1.40 / 2 (70.0%): 100%|██████████| 2/2 [01:10<00:00, 35.20s/it]2025/07/22 15:11:46 INFO dspy.evaluate.evaluate: Average Metric: 1.4 / 2 (70.0%)
+2025/07/22 15:11:46 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 70.0 with parameters ['Predictor 0: Instruction 0', 'Predictor 0: Few-Shot Set 1'].
+2025/07/22 15:11:46 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [58.33, 70.83, 79.17, 63.33, 63.33, 60.0, 70.0]
+2025/07/22 15:11:46 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 79.17
+2025/07/22 15:11:46 INFO dspy.teleprompt.mipro_optimizer_v2: =======================
+
+
+2025/07/22 15:11:46 INFO dspy.teleprompt.mipro_optimizer_v2: Returning best identified program with score 79.17!
+2025-07-22 15:11:46,426 - root - INFO - Optimizer.compile completed successfully
+2025-07-22 15:11:46,426 - root - INFO - Optimized program type: <class 'dspy.predict.predict.Predict'>
+2025-07-22 15:11:46,427 - root - INFO - Optimized program attributes: ['__call__', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__slotnames__', '__str__', '__subclasshook__', '__weakref__', '_base_init', 'batch', 'callbacks', 'candidate_programs', 'config', 'deepcopy', 'demos', 'dump_state', 'forward', 'get_config', 'get_lm', 'lm', 'load', 'load_state', 'map_named_predictors', 'mb_candidate_programs', 'model_family', 'named_parameters', 'named_predictors', 'named_sub_modules', 'parameters', 'predictors', 'prompt_model_total_calls', 'reset', 'reset_copy', 'save', 'score', 'set_lm', 'signature', 'stage', 'total_calls', 'traces', 'train', 'trial_logs', 'update_config']
+2025-07-22 15:11:46,427 | INFO    | [Running optimization strategy] completed in 973.86s
+2025-07-22 15:11:46,427 | INFO    | Optimized prompt:
+2025-07-22 15:11:46,427 | INFO    | ----------------------------------------
+2025-07-22 15:11:46,427 | INFO    | {
+   "answer":
+      {
+         "class_types": ["Lower Body Strength", "Full Body Strength"],
+         "durations": ["30"],
+         "explanation": "With a strength goal in mind and a history of varied workouts, today's 30-min Lower Body Strength class will build power and boost metabolism, setting the stage for tomorrow's full-body session"
+      }
+}
+2025-07-22 15:11:46,427 | INFO    | ----------------------------------------
+2025-07-22 15:11:46,434 | INFO    | Saved optimized prompt to results/insightfulness_config_20250722_145532.json
+2025-07-22 15:11:46,443 | INFO    | [Saving optimized prompt] completed in 0.02s
+
+Unexpected error during optimization: 'dict' object has no attribute 'strip'
+
+optimized program: Predict(StringSignature(question, goal, history_text -> answer
+    instructions='{\n   "answer":\n      {\n         "class_types": ["Lower Body Strength", "Full Body Strength"],\n         "durations": ["30"],\n         "explanation": "With a strength goal in mind and a history of varied workouts, today\'s 30-min Lower Body Strength class will build power and boost metabolism, setting the stage for tomorrow\'s full-body session"\n      }\n}'
+    question = Field(annotation=str required=True json_schema_extra={'desc': '${question}', '__dspy_field_type': 'input', 'prefix': 'Question:'})
+    goal = Field(annotation=str required=True json_schema_extra={'desc': '${goal}', '__dspy_field_type': 'input', 'prefix': 'Goal:'})
+    history_text = Field(annotation=str required=True json_schema_extra={'desc': '${history_text}', '__dspy_field_type': 'input', 'prefix': 'History Text:'})
+    answer = Field(annotation=str required=True json_schema_extra={'desc': '${answer}', '__dspy_field_type': 'output', 'prefix': 'Answer:'})
+))
+No optimized prompt was generated.
+2025-07-22 15:11:46,444 | INFO    | === Timings summary ===
+2025-07-22 15:11:46,444 | INFO    | Running optimization strategy 973.86s
+2025-07-22 15:11:46,444 | INFO    | Saving optimized prompt     0.02s
+2025-07-22 15:11:46,444 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-22 15:11:46,559 - httpcore.connection - DEBUG - close.started
+2025-07-22 15:11:46,559 - httpcore.connection - DEBUG - close.complete

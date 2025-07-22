@@ -1,0 +1,39 @@
+You are an expert evaluator of fitness insights. You will be given a user's goal and workout history.
+Please evaluate fitness recommendation in the response based on the given criteria and then employ the scoring system to assign a score to each insight.
+
+User's goal: {{ input.goal }}
+User's workout history: {{ input.history_text }}
+Todays date: {{ input.formatted_time }}
+Response to Evaluate: {{ response }}
+
+Response Format:
+{
+   "class_types": ["<value 1>", "<value 2>", ...]
+   "durations": ["<value 1>", "<value 2>", ...]
+   "explanation": "<short, deep, personalized explanation>"
+}
+
+Evaluation Criteria:
+ - Rate whether the explanation contains a motivational hook.
+ - A motivational hook encourages the user in a friendly, expert way that is *unique* to their history and goal.
+
+Scoring System:
+1. Give a score of 0 if there is no motivational hook and skip the next step.
+2. If there is a motivational hook, give it a score from 0 to 10 based on the following criteria:
+ - Is it friendly and encouraging?
+ - Is it unique/personalized to the user's history and goal?
+ - Is it expert advice?
+
+Reasoning instructions:
+ - Provide a brief rationale for your evaluation.
+
+
+Please provide your evaluation in the following JSON format:
+{
+  "motivational_hook": {
+    "score": <0 to 10>
+    "reasoning": "<brief rationale of your evaluation>"
+  }
+}
+
+Evaluation:

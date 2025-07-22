@@ -1,0 +1,35 @@
+You are an expert evaluator of fitness recommendations. You will be given a user's goal and workout history.
+Please evaluate fitness recommendation in the response based on the given criteria and then employ the scoring system to assign a score to each insight.
+
+User's goal: {{ input.goal }}
+User's workout history: {{ input.history_text }}
+Todays date: {{ input.formatted_time }}
+Response to Evaluate: {{ response }}
+
+Response Format:
+{
+   "class_types": ["<value 1>", "<value 2>", ...]
+   "durations": ["<value 1>", "<value 2>", ...]
+   "explanation": "<short, deep, personalized explanation>"
+}
+
+Evaluation Criteria:
+1. Rate the level of insightfulness of the explanation based on the following criteria:
+    - Does it have a specific reference to something they did (e.g., “Tuesday's 30-min climb ride”) or a notable pattern (e.g., “3 straight short HIIT sessions”)
+    - Does it have a concise rationale: why today's pick supports overload, recovery balance, or skill variety for their goal
+    - Is the explanation deep and nuanced or is it surface level (e.g., “you did a lot of HIIT sessions, so let's do some more”)
+
+Scoring System:
+1. Score the insightfulness of the explanation based on the critria above on a scale of 0 to 10.
+
+Reasoning instructions:
+ - Provide a brief rationale for your evaluation.
+
+
+Please provide your evaluation in the following JSON format:
+{
+  "insightfulness": {
+    "score": <Score from 0 to 10>,
+    "reasoning": "<brief rationale of your evaluation>"
+  }
+}

@@ -1,0 +1,111 @@
+You are an expert fact checker.
+
+You will be given a fitness recommendation with the given format:
+{
+   "class_types": ["<value 1>", "<value 2>", ...] # comma-separated list of values from the CLASS_TYPES enum.
+   "durations": ["<value 1>", "<value 2>", ...] # comma-separated list of durations from the DURATIONS enum
+   "explanation": "<short, deep, personalized explanation>"
+}
+
+Please evaluate fitness recommendation in the response based on the given criteria and then employ the scoring system to assign a score to each insight.
+
+Response to Evaluate: {{ response }}
+
+Evaluation Criteria:
+Determine if the class_types list only contains values present in the following enum:
+CLASS_TYPES = [
+    "Just Run",
+    "Scenic Run",
+    "Guided Scenic Run",
+    "Distance Scenic Run",
+    "Outdoor Run",
+    "Outdoor Walk",
+    "Outdoor Speed Run",
+    "Yoga Conditioning",
+    "Low Impact Cardio",
+    "Low Intensity HIIT Cardio",
+    "Bodyweight Strength",
+    "Full Body Strength",
+    "Core Strength",
+    "Outdoor Endurance Run",
+    "Walking Warm Up",
+    "Walking Cool Down",
+    "Walk",
+    "Cycling Warm Up",
+    "Just Ride Cycling",
+    "Upper Body Strength",
+    "Pre Run Stretch",
+    "Outdoor Intervals Run",
+    "Hiking Walk",
+    "Guided Scenic Walk",
+    "Zen Meditation",
+    "Low Impact Cycling",
+    "Intervals Cycling",
+    "Climb Cycling",
+    "Power Zone Cycling",
+    "Outdoor Power Walk",
+    "Shadowboxing",
+    "Dance Cardio",
+    "Full Body HIIT Cardio",
+    "Lower Body Strength",
+    "Strength for Runners",
+    "Barre",
+    "Pilates",
+    "Beginner Strength",
+    "Sleep Meditation",
+    "Beginner Run",
+    "Power Walk",
+    "Guided Meditation",
+    "Rowing Warm Up & Cool Down",
+    "Beginner Row",
+    "Rowing",
+    "Endurance Row",
+    "Intervals Row",
+    "Scenic Row",
+    "Upper Body Stretch",
+    "Lower Body Stretch",
+    "Scenic Walk",
+    "Pre Row Stretch",
+    "Post Ride Stretch",
+    "Meditation",
+    "Pre & Post Cycling Stretch",
+    "Post Run Stretch",
+    "Pre & Post Row Stretch",
+    "Hill Run",
+    "Running Warm Up",
+    "Running Cool Down",
+    "Running Skills",
+    "Intervals Run",
+    "Endurance Run",
+    "Speed Run",
+    "Running",
+    "Walk + Run",
+    "Scenic Cycling",
+    "Distance Scenic Cycling",
+    "HIIT Cardio",
+    "Yoga",
+    "Cycling Cool Down",
+    "Beginner Cycling",
+    "Cycling",
+    "Total Body Yoga",
+    "Power Yoga",
+    "Yoga + Pilates"
+]
+
+Scoring system:
+1. Consider each class_type in the list and assign a score of 1 if it is present in the list above and 0 if it is not present.
+2. Add up the scores for each class_type to get a total score for the response and then divide by the number of class_types to get the average score.
+
+Reasoning instructions:
+ - For each class_type item, provide a brief explanation of why you gave that score as a JSON object.
+
+
+Please provide your evaluation in the following JSON format:
+{
+  "class_type": {
+    "score": <0 or 1>, # this is the average score of each class type in the list
+    "reasoning": "<score and brief explanation for each class_type item as a JSON>"
+  }
+}
+
+Evaluation:

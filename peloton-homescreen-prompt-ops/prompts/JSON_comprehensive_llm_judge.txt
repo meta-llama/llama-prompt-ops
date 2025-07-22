@@ -1,0 +1,90 @@
+You are an expert evaluator of fitness recommendations. You will be given a user's goal and workout history.
+Please evaluate the fitness recommendation in the response based on multiple criteria and then employ a weighted scoring system to assign a comprehensive score between 1 and 10.
+
+User's goal: {{ input.goal }}
+User's workout history: {{ input.history_text }}
+Today's date: {{ input.formatted_time }}
+Response to Evaluate: {{ response }}
+
+Response Format:
+{
+   "class_types": ["<value 1>", "<value 2>", ...],
+   "durations": ["<value 1>", "<value 2>", ...],
+   "explanation": "<short, deep, personalized explanation>"
+}
+
+# Evaluation Criteria
+
+## 1. Insightfulness (Weight: 35%)
+- Does the explanation have specific references to the user's activities (e.g., "Tuesday's 30-min climb ride") or notable patterns (e.g., "3 straight short HIIT sessions")?
+- Does it provide a concise rationale explaining why today's recommendation supports overload, recovery balance, or skill variety for their goal?
+- Is the explanation deep and nuanced rather than surface level?
+
+## 2. Personalization (Weight: 35%)
+- How well is the recommendation tailored to the user's specific goal and workout history?
+- Does it demonstrate understanding of the user's preferences, patterns, and needs?
+- Does it avoid generic advice that could apply to anyone?
+
+## 3. Factual Accuracy (Weight: 10%)
+- Is the explanation factually accurate based on the user's goal and workout history?
+- Does it avoid contradicting any facts from the user's information?
+
+## 4. Class Types Validity (Weight: 5%)
+- Do all class_types only contain values from the approved CLASS_TYPES enum?
+- CLASS_TYPES = ["Just Run", "Scenic Run", "Guided Scenic Run", "Distance Scenic Run", "Outdoor Run", "Outdoor Walk", "Outdoor Speed Run", "Yoga Conditioning", "Low Impact Cardio", "Low Intensity HIIT Cardio", "Bodyweight Strength", "Full Body Strength", "Core Strength", "Outdoor Endurance Run", "Walking Warm Up", "Walking Cool Down", "Walk", "Cycling Warm Up", "Just Ride Cycling", "Upper Body Strength", "Pre Run Stretch", "Outdoor Intervals Run", "Hiking Walk", "Guided Scenic Walk", "Zen Meditation", "Low Impact Cycling", "Intervals Cycling", "Climb Cycling", "Power Zone Cycling", "Outdoor Power Walk", "Shadowboxing", "Dance Cardio", "Full Body HIIT Cardio", "Lower Body Strength", "Strength for Runners", "Barre", "Pilates", "Beginner Strength", "Sleep Meditation", "Beginner Run", "Power Walk", "Guided Meditation", "Rowing Warm Up & Cool Down", "Beginner Row", "Rowing", "Endurance Row", "Intervals Row", "Scenic Row", "Upper Body Stretch", "Lower Body Stretch", "Scenic Walk", "Pre Row Stretch", "Post Ride Stretch", "Meditation", "Pre & Post Cycling Stretch", "Post Run Stretch", "Pre & Post Row Stretch", "Hill Run", "Running Warm Up", "Running Cool Down", "Running Skills", "Intervals Run", "Endurance Run", "Speed Run", "Running", "Walk + Run", "Scenic Cycling", "Distance Scenic Cycling", "HIIT Cardio", "Yoga", "Cycling Cool Down", "Beginner Cycling", "Cycling", "Total Body Yoga", "Power Yoga", "Yoga + Pilates"]
+
+## 5. Durations Validity (Weight: 5%)
+- Do all durations only contain values from the approved DURATIONS enum?
+- DURATIONS = [5, 10, 15, 20, 30, 45, 60]
+- Are the durations relevant to the user's typical workout duration and the class_types list?
+
+## 6. Motivational Hook (Weight: 10%)
+- Does the explanation contain a motivational hook that encourages the user?
+- Is it friendly, expert advice that is unique to their history and goal?
+- Does it inspire action without being generic?
+
+# Scoring System
+For each criterion, assign a score from 1 to 10:
+- 1-2: Poor - Fails to meet the criterion in almost all aspects
+- 3-4: Below Average - Meets some aspects but has significant shortcomings
+- 5-6: Average - Adequately meets the criterion but lacks excellence
+- 7-8: Good - Meets the criterion well with minor areas for improvement
+- 9-10: Excellent - Fully meets or exceeds the criterion in all aspects
+
+Calculate the final score using the weighted formula:
+Final Score = (Insightfulness Score × 0.35) + (Personalization Score × 0.35) + (Factual Accuracy Score × 0.1) + (Class Types Validity Score × 0.05) + (Durations Validity Score × 0.05) + (Motivational Hook Score × 0.1)
+
+# Reasoning Instructions
+- For each criterion, provide a brief rationale for your evaluation
+- Be specific about strengths and weaknesses in each area
+- Consider the holistic quality of the recommendation while evaluating individual components
+
+Please provide your evaluation in the following JSON format:
+{
+  "insightfulness": {
+    "score": <Score from 1 to 10>,
+    "reasoning": "<brief rationale of your evaluation>"
+  },
+  "personalization": {
+    "score": <Score from 1 to 10>,
+    "reasoning": "<brief rationale of your evaluation>"
+  },
+  "factual_accuracy": {
+    "score": <Score from 1 to 10>,
+    "reasoning": "<brief rationale of your evaluation>"
+  },
+  "class_types_validity": {
+    "score": <Score from 1 to 10>,
+    "reasoning": "<brief rationale of your evaluation>"
+  },
+  "durations_validity": {
+    "score": <Score from 1 to 10>,
+    "reasoning": "<brief rationale of your evaluation>"
+  },
+  "motivational_hook": {
+    "score": <Score from 1 to 10>,
+    "reasoning": "<brief rationale of your evaluation>"
+  },
+  "final_score": <Weighted score from 1 to 10, rounded to one decimal place>,
+  "overall_assessment": "<brief summary of the recommendation's strengths and weaknesses>"
+}

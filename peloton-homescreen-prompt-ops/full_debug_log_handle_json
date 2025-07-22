@@ -1,0 +1,92 @@
+Loaded environment variables from .env
+Loaded configuration from configs/insightfulness_config.yaml
+Using different models - Task: openrouter/meta-llama/llama-4-maverick, Proposer: openrouter/meta-llama/llama-3.3-70b-instruct
+Initialized InsightfulnessJudgeMetric with model: openrouter/openai/o3
+Using metric: InsightfulnessJudgeMetric
+Resolved relative dataset path to: /Users/jmencab/Code/llama-prompt-ops/peloton-homescreen-prompt-ops/configs/../data/results_5_examples.json
+Using dataset adapter: PelotonHomescreenDatasetAdapter
+Auto-detected BasicOptimizationStrategy for model: 
+Loaded prompt from file: /Users/jmencab/Code/llama-prompt-ops/peloton-homescreen-prompt-ops/configs/../prompts/HOMESCREEN_v1_3.txt
+Using 'system_prompt' from config
+Using config filename as output prefix: insightfulness_config
+Starting prompt optimization...
+
+Computing baseline score on 3 test examples using 18 threads...
+  0%|          | 0/3 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}}
+model response: {
+  "answer": {
+    "class_types": ["Bodyweight Strength", "Full Body Strength"],
+    "durations": ["20", "30"],
+    "explanation": "After 3 straight meditation sessions, try strength training"
+  }
+}
+model_extracted_json: {'class_types': None, 'durations': None, 'explanation': None}
+o4-mini response: {'class_types': ['Intervals Cycling'], 'durations': ['20', '30'], 'explanation': "Wednesday's 45-min PZ Endurance Ride built your base—now crush a 20- or 30-min Intervals Cycling to spike HR and ignite fresh cardio gains"}
+o4_extracted_json: {'answer': {'class_types': ['Intervals Cycling'], 'durations': ['20', '30'], 'explanation': "Wednesday's 45-min PZ Endurance Ride built your base—now crush a 20- or 30-min Intervals Cycling to spike HR and ignite fresh cardio gains"}}
+model response: {
+  "class_types": ["Low Impact Cardio", "Yoga Conditioning"],
+  "durations": ["30", "45"],
+  "explanation": "Following 20 min 2000s Ride, balance with low-impact cardio"
+}
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio', 'Yoga Conditioning'], 'durations': ['30', '45'], 'explanation': 'Following 20 min 2000s Ride, balance with low-impact cardio'}}
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}}
+model response: {
+  "answer": {
+    "class_types": "Low Impact Cardio, Walking",
+    "durations": "20, 30",
+    "explanation": "Following 20 min walk, boost cardio with low-impact"
+  }
+}
+model_extracted_json: {'class_types': None, 'durations': None, 'explanation': None}
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 1,\n  "model_response_insight_reasoning": "The model response provides no class types, no duration, and no explanation—so there is effectively zero insight or personalization.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "Mentions Thursday’s 10-min Deep Relaxation and links that recovery session to a suggestion for 20–30 min Beginner Strength, aligning with the strength-building goal. While the reference is specific and the recommendation logical, the analysis is brief and lacks deeper discussion of the user\'s broader pattern (e.g., long streak of recovery-focused workouts and absence of actual strength work), so it sits at a mid-level insight score."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 1, 'model_response_insight_reasoning': 'The model response provides no class types, no duration, and no explanation—so there is effectively zero insight or personalization.', 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': "Mentions Thursday’s 10-min Deep Relaxation and links that recovery session to a suggestion for 20–30 min Beginner Strength, aligning with the strength-building goal. While the reference is specific and the recommendation logical, the analysis is brief and lacks deeper discussion of the user's broader pattern (e.g., long streak of recovery-focused workouts and absence of actual strength work), so it sits at a mid-level insight score."}}
+Average Metric: 0.00 / 0 (0%):   0%|          | 0/3 [00:17<?, ?it/s]Average Metric: 0.00 / 0 (0%):  33%|███▎      | 1/3 [00:17<00:34, 17.26s/it]result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Mentions the “20 min 2000s Ride” but gives no detail on when it occurred or how it fits into the recent training load. The advice—“balance with low-impact cardio”—is vague and does not explain why low-impact or yoga conditioning advances the stated goal of boosting cardio fitness after a week heavy on endurance and strength. Lacks overload / recovery logic and shows minimal connection between history and recommendation.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "References the specific 45-min Power Zone Endurance Ride done Wednesday and correctly identifies it as base work. Recommends a 20–30 min Intervals Cycling session to elevate heart-rate variability, providing a concise—though brief—rationale aligning with progressive overload for cardio development. Some training-principle awareness but limited depth.",\n  "comparison_note": "The o4-mini response is moderately insightful, whereas the model response is largely generic."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Mentions the “20 min 2000s Ride” but gives no detail on when it occurred or how it fits into the recent training load. The advice—“balance with low-impact cardio”—is vague and does not explain why low-impact or yoga conditioning advances the stated goal of boosting cardio fitness after a week heavy on endurance and strength. Lacks overload / recovery logic and shows minimal connection between history and recommendation.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'References the specific 45-min Power Zone Endurance Ride done Wednesday and correctly identifies it as base work. Recommends a 20–30 min Intervals Cycling session to elevate heart-rate variability, providing a concise—though brief—rationale aligning with progressive overload for cardio development. Some training-principle awareness but limited depth.'}}
+Average Metric: 0.00 / 0 (0%):  33%|███▎      | 1/3 [00:25<00:34, 17.26s/it]Average Metric: 0.00 / 0 (0%):  67%|██████▋   | 2/3 [00:25<00:12, 12.15s/it]result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 1,\n  "model_response_insight_reasoning": "The model response supplies no class, duration, or explanation, therefore it contains essentially zero insight for the user.",\n  "o4_mini_response_insight_score": 4,\n  "o4_mini_response_insight_reasoning": "It references a specific recent workout (\\"Thursday\'s 22-min walk\\") and offers a simple rationale—transition from walking to a 20–30 min beginner run to build aerobic capacity and maintain the streak. However, the commentary is brief and surface-level: it doesn’t analyze the user’s extensive daily-walk pattern, heart-rate zones, or recovery needs, nor does it tie the recommendation deeply to the stated goal of boosting cardio fitness."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 1, 'model_response_insight_reasoning': 'The model response supplies no class, duration, or explanation, therefore it contains essentially zero insight for the user.', 'o4_mini_response_insight_score': 4, 'o4_mini_response_insight_reasoning': 'It references a specific recent workout ("Thursday\'s 22-min walk") and offers a simple rationale—transition from walking to a 20–30 min beginner run to build aerobic capacity and maintain the streak. However, the commentary is brief and surface-level: it doesn’t analyze the user’s extensive daily-walk pattern, heart-rate zones, or recovery needs, nor does it tie the recommendation deeply to the stated goal of boosting cardio fitness.'}}
+Average Metric: 0.00 / 0 (0%):  67%|██████▋   | 2/3 [00:32<00:12, 12.15s/it]Average Metric: 0.00 / 0 (0%): 100%|██████████| 3/3 [00:32<00:00,  9.63s/it]Average Metric: 0.00 / 0 (0%): 100%|██████████| 3/3 [00:32<00:00, 10.83s/it]
+✅ Baseline Score: 0.000 in 34.48s
+
+Bootstrapping set 1/5
+Bootstrapping set 2/5
+Bootstrapping set 3/5
+o4-mini response: {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"}
+o4_extracted_json: {'answer': {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"}}
+model response: {
+  "answer": {
+    "class_types": ["Full Body Strength", "Lower Body Strength"],
+    "durations": ["30", "45"],
+    "explanation": "After Thursday's 20-min Arms & Shoulders Strength, focus on lower body with 30-min Full Body Strength to balance your workout routine and progress towards your strength goal."
+  }
+}
+model_extracted_json: {'class_types': None, 'durations': None, 'explanation': None}
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 1,\n  "model_response_insight_reasoning": "The model response contains no class type, duration, or explanation, so it offers virtually no insight tied to the user\'s workouts or goal.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "References the most recent 20-min Arms & Shoulders session and explains that a 30-min Lower Body Strength class would balance muscle-group recovery and advance leg strength. This is a clear, goal-related rationale, but it is brief and lacks deeper pattern analysis (e.g., training volume trends, fatigue management), so it sits in the mid-range for insightfulness."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 1, 'model_response_insight_reasoning': "The model response contains no class type, duration, or explanation, so it offers virtually no insight tied to the user's workouts or goal.", 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'References the most recent 20-min Arms & Shoulders session and explains that a 30-min Lower Body Strength class would balance muscle-group recovery and advance leg strength. This is a clear, goal-related rationale, but it is brief and lacks deeper pattern analysis (e.g., training volume trends, fatigue management), so it sits in the mid-range for insightfulness.'}}
+Bootstrapped 0 full traces after 0 examples for up to 1 rounds, amounting to 1 attempts.
+Bootstrapping set 4/5
+o4-mini response: {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"}
+o4_extracted_json: {'answer': {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"}}
+model response: {
+  "answer": {
+    "class_types": "Full Body Strength, Upper Body Strength",
+    "durations": "30, 45",
+    "explanation": "After Thursday's 20 min Arms & Shoulders Strength, focus on full body for balanced progress"
+  }
+}
+model_extracted_json: {'class_types': None, 'durations': None, 'explanation': None}
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 1,\n  "model_response_insight_reasoning": "The model response contains no class type, duration, or explanation, so it offers virtually no insight tied to the user\'s workouts or goal.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "References the most recent 20-min Arms & Shoulders session and explains that a 30-min Lower Body Strength class would balance muscle-group recovery and advance leg strength. This is a clear, goal-related rationale, but it is brief and lacks deeper pattern analysis (e.g., training volume trends, fatigue management), so it sits in the mid-range for insightfulness."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 1, 'model_response_insight_reasoning': "The model response contains no class type, duration, or explanation, so it offers virtually no insight tied to the user's workouts or goal.", 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'References the most recent 20-min Arms & Shoulders session and explains that a 30-min Lower Body Strength class would balance muscle-group recovery and advance leg strength. This is a clear, goal-related rationale, but it is brief and lacks deeper pattern analysis (e.g., training volume trends, fatigue management), so it sits in the mid-range for insightfulness.'}}
+Bootstrapped 0 full traces after 0 examples for up to 1 rounds, amounting to 1 attempts.
+Bootstrapping set 5/5

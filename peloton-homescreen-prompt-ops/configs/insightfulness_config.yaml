@@ -1,0 +1,25 @@
+system_prompt:
+  file: ../prompts/HOMESCREEN_v1_3.txt
+  inputs:
+  - question
+  - goal
+  - history_text
+  outputs:
+  - answer
+
+dataset:
+  adapter_class: data.PelotonHomescreenDatasetAdapter.PelotonHomescreenDatasetAdapter
+  path: ../data/eval_1752891629_extracted_results_10_examples.json
+  input_field: [inputs, question, goal, history_text]
+  golden_output_field: outputs.answer
+
+model:
+  task_model: openrouter/meta-llama/llama-4-maverick
+  proposer_model: openrouter/meta-llama/llama-3.3-70b-instruct
+
+metric:
+  class: data.InsightfulnessJudgeMetric.InsightfulnessJudgeMetric
+  strict_json: false
+  output_field: answer
+optimization:
+  strategy: llama

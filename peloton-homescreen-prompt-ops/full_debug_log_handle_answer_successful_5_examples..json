@@ -1,0 +1,348 @@
+Loaded environment variables from .env
+Loaded configuration from configs/insightfulness_config.yaml
+Using different models - Task: openrouter/meta-llama/llama-4-maverick, Proposer: openrouter/meta-llama/llama-3.3-70b-instruct
+Initialized InsightfulnessJudgeMetric with model: openrouter/openai/o3
+Using metric: InsightfulnessJudgeMetric
+Resolved relative dataset path to: /Users/jmencab/Code/llama-prompt-ops/peloton-homescreen-prompt-ops/configs/../data/results_5_examples.json
+Using dataset adapter: PelotonHomescreenDatasetAdapter
+Auto-detected BasicOptimizationStrategy for model: 
+Loaded prompt from file: /Users/jmencab/Code/llama-prompt-ops/peloton-homescreen-prompt-ops/configs/../prompts/HOMESCREEN_v1_3.txt
+Using 'system_prompt' from config
+Using config filename as output prefix: insightfulness_config
+Starting prompt optimization...
+
+Computing baseline score on 3 test examples using 18 threads...
+  0%|          | 0/3 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Strength'], 'durations': [20, 30], 'explanation': 'Thursday’s 10 min Deep Relaxation reset you—now dive into 20 or 30 min Beginner Strength to lay your muscle foundation and feel unstoppable!'}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": ["Bodyweight Strength", "Lower Body Strength"],
+    "durations": ["20", "30"],
+    "explanation": "After 7 meditations and 3 walks, try strength training"
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Bodyweight Strength', 'Lower Body Strength'], 'durations': ['20', '30'], 'explanation': 'After 7 meditations and 3 walks, try strength training'}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Beginner Run'], 'durations': ['20', '30'], 'explanation': "Thursday's 22-min walk built your foundation - now a 20 or 30-min Beginner Run boosts your aerobic engine and stokes that streak!"}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": "Low Impact Cardio, Walking",
+    "durations": "20, 30",
+    "explanation": "Following 20 min walk, try 20-30 min Low Impact Cardio"
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': 'Low Impact Cardio, Walking', 'durations': '20, 30', 'explanation': 'Following 20 min walk, try 20-30 min Low Impact Cardio'}} with type: <class 'dict'>
+o4-mini response: {'class_types': ['Intervals Cycling'], 'durations': ['20', '30'], 'explanation': "Wednesday's 45-min PZ Endurance Ride built your base—now crush a 20- or 30-min Intervals Cycling to spike HR and ignite fresh cardio gains"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Intervals Cycling'], 'durations': ['20', '30'], 'explanation': "Wednesday's 45-min PZ Endurance Ride built your base—now crush a 20- or 30-min Intervals Cycling to spike HR and ignite fresh cardio gains"}} with type: <class 'dict'>
+model response: {
+  "class_types": ["Low Impact Cardio", "Cycling"],
+  "durations": ["30", "45"],
+  "explanation": "20 min cycling supports cardio goal"
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio', 'Cycling'], 'durations': ['30', '45'], 'explanation': '20 min cycling supports cardio goal'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "The explanation simply says, “Following 20 min walk, try 20-30 min Low Impact Cardio.” It does not reference any specific workout the user actually completed (the user did several walks of varying lengths, not a single 20-min walk). It offers no rationale tied to overload, recovery, or progressive stimulus—just a restatement of duration and modality. Overall it is generic and shallow.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Mentions “Thursday\'s 22-min walk” (a concrete session from the log) and frames it as foundation work, then recommends a Beginner Run as the next logical overload step to ‘boost your aerobic engine’ while acknowledging the long daily streak. This shows awareness of the user’s volume, a progression from walking to running, and a link to the cardio-fitness goal. The analysis is still brief, but it contains specific references and a clear, goal-oriented rationale."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'The explanation simply says, “Following 20 min walk, try 20-30 min Low Impact Cardio.” It does not reference any specific workout the user actually completed (the user did several walks of varying lengths, not a single 20-min walk). It offers no rationale tied to overload, recovery, or progressive stimulus—just a restatement of duration and modality. Overall it is generic and shallow.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': "Mentions “Thursday's 22-min walk” (a concrete session from the log) and frames it as foundation work, then recommends a Beginner Run as the next logical overload step to ‘boost your aerobic engine’ while acknowledging the long daily streak. This shows awareness of the user’s volume, a progression from walking to running, and a link to the cardio-fitness goal. The analysis is still brief, but it contains specific references and a clear, goal-oriented rationale."}}
+Average Metric: 0.50 / 1 (50.0%):   0%|          | 0/3 [00:29<?, ?it/s]Average Metric: 0.50 / 1 (50.0%):  33%|███▎      | 1/3 [00:29<00:59, 29.54s/it]result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Mentions the tally of 7 meditations and 3 walks and notes the absence of strength work, but gives no further rationale (e.g., recovery state, progression, or why body-weight vs. loaded work fits today). Insight is cursory and reads more like a reminder than a tailored explanation.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Calls out the most recent session (“Thursday’s 10 min Deep Relaxation”) and frames it as recovery that ‘reset’ the user before introducing Beginner Strength to build a muscle base—connecting recovery status with next-step overload. Still fairly brief and motivational, yet it links a specific workout to a logical training progression, giving it modest depth."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Mentions the tally of 7 meditations and 3 walks and notes the absence of strength work, but gives no further rationale (e.g., recovery state, progression, or why body-weight vs. loaded work fits today). Insight is cursory and reads more like a reminder than a tailored explanation.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Calls out the most recent session (“Thursday’s 10 min Deep Relaxation”) and frames it as recovery that ‘reset’ the user before introducing Beginner Strength to build a muscle base—connecting recovery status with next-step overload. Still fairly brief and motivational, yet it links a specific workout to a logical training progression, giving it modest depth.'}}
+Average Metric: 1.17 / 2 (58.3%):  33%|███▎      | 1/3 [00:30<00:59, 29.54s/it]Average Metric: 1.17 / 2 (58.3%):  67%|██████▋   | 2/3 [00:30<00:12, 12.50s/it]result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 2,\n  "model_response_insight_reasoning": "Only states that a short cycling session \\"supports cardio goal.\\" No reference to any of the user’s recent workouts, no rationale about intensity, recovery, or progression. Reads as a generic platitude.",\n  "o4_mini_response_insight_score": 7,\n  "o4_mini_response_insight_reasoning": "Cites the user’s most recent 45-min Power Zone Endurance ride, notes it served as base-building, and explains that a shorter intervals ride today will drive heart-rate spikes to further cardio adaptations. Provides a clear overload/recovery rationale tied to the user’s actual pattern."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 2, 'model_response_insight_reasoning': 'Only states that a short cycling session "supports cardio goal." No reference to any of the user’s recent workouts, no rationale about intensity, recovery, or progression. Reads as a generic platitude.', 'o4_mini_response_insight_score': 7, 'o4_mini_response_insight_reasoning': 'Cites the user’s most recent 45-min Power Zone Endurance ride, notes it served as base-building, and explains that a shorter intervals ride today will drive heart-rate spikes to further cardio adaptations. Provides a clear overload/recovery rationale tied to the user’s actual pattern.'}}
+Average Metric: 1.45 / 3 (48.4%):  67%|██████▋   | 2/3 [00:34<00:12, 12.50s/it]Average Metric: 1.45 / 3 (48.4%): 100%|██████████| 3/3 [00:34<00:00,  8.83s/it]Average Metric: 1.45 / 3 (48.4%): 100%|██████████| 3/3 [00:34<00:00, 11.53s/it]
+✅ Baseline Score: 48.410 in 35.19s
+
+Bootstrapping set 1/5
+Bootstrapping set 2/5
+Bootstrapping set 3/5
+o4-mini response: {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": "Full Body Strength, Upper Body Strength",
+    "durations": "30, 45",
+    "explanation": "After Thursday's 20 min Arms & Shoulders Strength, focus on full body for balanced progress"
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': 'Full Body Strength, Upper Body Strength', 'durations': '30, 45', 'explanation': "After Thursday's 20 min Arms & Shoulders Strength, focus on full body for balanced progress"}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Mentions the most recent 20-min Arms & Shoulders session but offers only a generic suggestion to do a “full body” workout for “balanced progress.” No discussion of lower-body recovery needs, weekly volume patterns, or how 30- vs 45-min sessions serve the strength goal. Analysis is shallow and does not draw non-obvious connections.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "References the same recent upper-body session and explicitly recommends a lower-body strength class to restore balance between muscle groups while continuing leg development. Provides a concise rationale tied to recovery and progressive overload, though it stops short of deeper periodization insights or referencing overall weekly volume."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Mentions the most recent 20-min Arms & Shoulders session but offers only a generic suggestion to do a “full body” workout for “balanced progress.” No discussion of lower-body recovery needs, weekly volume patterns, or how 30- vs 45-min sessions serve the strength goal. Analysis is shallow and does not draw non-obvious connections.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'References the same recent upper-body session and explicitly recommends a lower-body strength class to restore balance between muscle groups while continuing leg development. Provides a concise rationale tied to recovery and progressive overload, though it stops short of deeper periodization insights or referencing overall weekly volume.'}}
+Bootstrapped 1 full traces after 0 examples for up to 1 rounds, amounting to 1 attempts.
+Bootstrapping set 4/5
+o4-mini response: {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": ["Full Body Strength", "Lower Body Strength"],
+    "durations": ["30", "45"],
+    "explanation": "After Thursday's 20-min Arms & Shoulders Strength, focus on lower body with 30-min Full Body Strength to balance your workout routine and progress towards your strength goal."
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Full Body Strength', 'Lower Body Strength'], 'durations': ['30', '45'], 'explanation': "After Thursday's 20-min Arms & Shoulders Strength, focus on lower body with 30-min Full Body Strength to balance your workout routine and progress towards your strength goal."}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "References the most recent 20-min Arms & Shoulders session but then confusingly tells the user to ‘focus on lower body with 30-min Full Body Strength,’ suggesting both lower- and full-body work without clarifying why two class types or why 45 min is also listed. Gives a generic justification about balance and progress, with no mention of earlier lower-body or cardio sessions, load management, or recovery needs. Slightly insightful but shallow and somewhat inconsistent.",\n  "o4_mini_response_insight_score": 5,\n  "o4_mini_response_insight_reasoning": "Clearly notes that the last workout was upper-body and recommends a complementary 30-min Lower Body Strength class to balance recovery and target leg development. Still basic, lacking discussion of overall volume or training split trends, but avoids contradictions and provides a succinct overload/recovery rationale."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'References the most recent 20-min Arms & Shoulders session but then confusingly tells the user to ‘focus on lower body with 30-min Full Body Strength,’ suggesting both lower- and full-body work without clarifying why two class types or why 45 min is also listed. Gives a generic justification about balance and progress, with no mention of earlier lower-body or cardio sessions, load management, or recovery needs. Slightly insightful but shallow and somewhat inconsistent.', 'o4_mini_response_insight_score': 5, 'o4_mini_response_insight_reasoning': 'Clearly notes that the last workout was upper-body and recommends a complementary 30-min Lower Body Strength class to balance recovery and target leg development. Still basic, lacking discussion of overall volume or training split trends, but avoids contradictions and provides a succinct overload/recovery rationale.'}}
+Bootstrapped 1 full traces after 0 examples for up to 1 rounds, amounting to 1 attempts.
+Bootstrapping set 5/5
+o4-mini response: {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Lower Body Strength'], 'durations': [30], 'explanation': "Thursday's 20-min Arms & Shoulders hit upper body; a 30-min Lower Body Strength session balances recovery and drives your leg gains"}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": "Full Body Strength, Upper Body Strength",
+    "durations": "30, 45",
+    "explanation": "After Thursday's 20 min Arms & Shoulders Strength, focus on full body for balanced progress"
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': 'Full Body Strength, Upper Body Strength', 'durations': '30, 45', 'explanation': "After Thursday's 20 min Arms & Shoulders Strength, focus on full body for balanced progress"}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Mentions the most recent 20-min Arms & Shoulders session but offers only a generic suggestion to do a “full body” workout for “balanced progress.” No discussion of lower-body recovery needs, weekly volume patterns, or how 30- vs 45-min sessions serve the strength goal. Analysis is shallow and does not draw non-obvious connections.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "References the same recent upper-body session and explicitly recommends a lower-body strength class to restore balance between muscle groups while continuing leg development. Provides a concise rationale tied to recovery and progressive overload, though it stops short of deeper periodization insights or referencing overall weekly volume."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Mentions the most recent 20-min Arms & Shoulders session but offers only a generic suggestion to do a “full body” workout for “balanced progress.” No discussion of lower-body recovery needs, weekly volume patterns, or how 30- vs 45-min sessions serve the strength goal. Analysis is shallow and does not draw non-obvious connections.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'References the same recent upper-body session and explicitly recommends a lower-body strength class to restore balance between muscle groups while continuing leg development. Provides a concise rationale tied to recovery and progressive overload, though it stops short of deeper periodization insights or referencing overall weekly volume.'}}
+Bootstrapped 1 full traces after 0 examples for up to 1 rounds, amounting to 1 attempts.
+  0%|          | 0/1 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": "Low Impact Cardio, Walking",
+    "durations": "30, 45",
+    "explanation": "Following 3 straight walking sessions, balance with low-impact cardio"
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': 'Low Impact Cardio, Walking', 'durations': '30, 45', 'explanation': 'Following 3 straight walking sessions, balance with low-impact cardio'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Mentions the recent streak of 3 walking sessions, but the recommendation (more low-impact cardio/walking) does not clearly resolve the overload–recovery or variety need it identifies. Provides almost no physiological rationale beyond generic \\"balance\\" language and doesn’t tie choice of 30 vs 45-min duration back to the user’s weight goal or history.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Cites Thursday’s 1-mile walk specifically and explains why shifting to a 30-min full-body strength session can boost metabolism and build lean mass—both relevant for weight-management. While still brief and somewhat generic, it shows a clearer link between prior activity, goal, and recommended workout than the model response."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Mentions the recent streak of 3 walking sessions, but the recommendation (more low-impact cardio/walking) does not clearly resolve the overload–recovery or variety need it identifies. Provides almost no physiological rationale beyond generic "balance" language and doesn’t tie choice of 30 vs 45-min duration back to the user’s weight goal or history.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Cites Thursday’s 1-mile walk specifically and explains why shifting to a 30-min full-body strength session can boost metabolism and build lean mass—both relevant for weight-management. While still brief and somewhat generic, it shows a clearer link between prior activity, goal, and recommended workout than the model response.'}}
+Average Metric: 0.67 / 1 (66.7%):   0%|          | 0/1 [00:29<?, ?it/s]Average Metric: 0.67 / 1 (66.7%): 100%|██████████| 1/1 [00:29<00:00, 29.36s/it]Average Metric: 0.67 / 1 (66.7%): 100%|██████████| 1/1 [00:29<00:00, 29.36s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": [45], "explanation": "To support weight goals, consider a 45-minute Low Impact Cardio session, such as brisk walking or swimming, to burn calories and improve cardiovascular health without excessive strain on joints."} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': [45], 'explanation': 'To support weight goals, consider a 45-minute Low Impact Cardio session, such as brisk walking or swimming, to burn calories and improve cardiovascular health without excessive strain on joints.'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Gives a very general recommendation (45-min low-impact cardio) with no reference to the user’s specific volume (numerous short walks), recent strength work, or any identifiable pattern. The rationale—burn calories, protect joints—is sound but surface-level and could apply to anyone.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Briefly cites a concrete workout from the log (Thursday’s 1-mile walk) and explains why a 30-min full-body strength session would add metabolic demand and lean-muscle stimulus, complementing the user’s mostly walking routine. Insight is still basic and lacks deeper analysis of frequency, recovery, or periodization, but it makes a clear connection between history, goal, and recommendation."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Gives a very general recommendation (45-min low-impact cardio) with no reference to the user’s specific volume (numerous short walks), recent strength work, or any identifiable pattern. The rationale—burn calories, protect joints—is sound but surface-level and could apply to anyone.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Briefly cites a concrete workout from the log (Thursday’s 1-mile walk) and explains why a 30-min full-body strength session would add metabolic demand and lean-muscle stimulus, complementing the user’s mostly walking routine. Insight is still basic and lacks deeper analysis of frequency, recovery, or periodization, but it makes a clear connection between history, goal, and recommendation.'}}
+Average Metric: 0.50 / 1 (50.0%):   0%|          | 0/1 [00:25<?, ?it/s]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:25<00:00, 25.78s/it]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:25<00:00, 25.78s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": [45], "explanation": "To support weight goals, consider a 45-minute Low Impact Cardio session, such as brisk walking or swimming, to burn calories and improve cardiovascular health without excessive strain on joints."} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': [45], 'explanation': 'To support weight goals, consider a 45-minute Low Impact Cardio session, such as brisk walking or swimming, to burn calories and improve cardiovascular health without excessive strain on joints.'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "Gives a very general recommendation (45-min low-impact cardio) with no reference to the user’s specific volume (numerous short walks), recent strength work, or any identifiable pattern. The rationale—burn calories, protect joints—is sound but surface-level and could apply to anyone.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Briefly cites a concrete workout from the log (Thursday’s 1-mile walk) and explains why a 30-min full-body strength session would add metabolic demand and lean-muscle stimulus, complementing the user’s mostly walking routine. Insight is still basic and lacks deeper analysis of frequency, recovery, or periodization, but it makes a clear connection between history, goal, and recommendation."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'Gives a very general recommendation (45-min low-impact cardio) with no reference to the user’s specific volume (numerous short walks), recent strength work, or any identifiable pattern. The rationale—burn calories, protect joints—is sound but surface-level and could apply to anyone.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Briefly cites a concrete workout from the log (Thursday’s 1-mile walk) and explains why a 30-min full-body strength session would add metabolic demand and lean-muscle stimulus, complementing the user’s mostly walking routine. Insight is still basic and lacks deeper analysis of frequency, recovery, or periodization, but it makes a clear connection between history, goal, and recommendation.'}}
+Average Metric: 0.50 / 1 (50.0%):   0%|          | 0/1 [00:05<?, ?it/s]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:05<00:00,  5.52s/it]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:05<00:00,  5.52s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": [30], "explanation": "To support your weight goals, consider a 30-minute Low Impact Cardio session, which can help you burn calories and improve cardiovascular health without putting excessive strain on your joints."} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': [30], 'explanation': 'To support your weight goals, consider a 30-minute Low Impact Cardio session, which can help you burn calories and improve cardiovascular health without putting excessive strain on your joints.'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 2,\n  "model_response_insight_reasoning": "The explanation is almost entirely generic. It does not reference any of the user’s 19 recent workouts, their streak of daily walking, or the strength sessions already present in the log. The rationale (\\"burn calories, protect joints\\") is true for anyone and shows little individualized analysis.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Mentions the user’s most recent 1-mile walk on Thursday and purposely contrasts it with a Full-Body Strength session to create variety and stimulate metabolism for weight goals. While still brief, it demonstrates awareness of the user’s pattern (lots of walking, little whole-body strength) and offers a clear rationale for why this change supports progress."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 2, 'model_response_insight_reasoning': 'The explanation is almost entirely generic. It does not reference any of the user’s 19 recent workouts, their streak of daily walking, or the strength sessions already present in the log. The rationale ("burn calories, protect joints") is true for anyone and shows little individualized analysis.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Mentions the user’s most recent 1-mile walk on Thursday and purposely contrasts it with a Full-Body Strength session to create variety and stimulate metabolism for weight goals. While still brief, it demonstrates awareness of the user’s pattern (lots of walking, little whole-body strength) and offers a clear rationale for why this change supports progress.'}}
+Average Metric: 0.33 / 1 (33.3%):   0%|          | 0/1 [00:19<?, ?it/s]Average Metric: 0.33 / 1 (33.3%): 100%|██████████| 1/1 [00:19<00:00, 19.46s/it]Average Metric: 0.33 / 1 (33.3%): 100%|██████████| 1/1 [00:19<00:00, 19.46s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": [30], "explanation": "To support weight goals, incorporate 30 minutes of low-impact cardio, such as walking or light jogging, to burn calories and boost metabolism without excessive strain"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': [30], 'explanation': 'To support weight goals, incorporate 30 minutes of low-impact cardio, such as walking or light jogging, to burn calories and boost metabolism without excessive strain'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "The advice is correct in principle (low-impact cardio burns calories), but the explanation is generic. It does not reference any of the user’s 80-day walking streak, recent 30-minute strength blocks, or the Thursday 1-mile walk. There is no discussion of overload, recovery, or variety—just a boiler-plate calorie-burn message.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Mentions Thursday’s 1-mile walk and intentionally pivots to a 30-minute full-body strength session, showing a basic understanding of balancing cardio with resistance to elevate metabolism for weight management. While it doesn’t dive into the broader pattern of frequent walks and periodic strength days, it does make a clear, workout-specific connection and gives a succinct rationale."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'The advice is correct in principle (low-impact cardio burns calories), but the explanation is generic. It does not reference any of the user’s 80-day walking streak, recent 30-minute strength blocks, or the Thursday 1-mile walk. There is no discussion of overload, recovery, or variety—just a boiler-plate calorie-burn message.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Mentions Thursday’s 1-mile walk and intentionally pivots to a 30-minute full-body strength session, showing a basic understanding of balancing cardio with resistance to elevate metabolism for weight management. While it doesn’t dive into the broader pattern of frequent walks and periodic strength days, it does make a clear, workout-specific connection and gives a succinct rationale.'}}
+Average Metric: 0.50 / 1 (50.0%):   0%|          | 0/1 [00:24<?, ?it/s]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:24<00:00, 24.77s/it]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:24<00:00, 24.77s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {
+  "answer": {
+    "class_types": ["Walking", "Light Cardio"],
+    "durations": ["30", "45"],
+    "explanation": "To support your weight goals, consider incorporating walking or light cardio exercises into your routine, aiming for 30-45 minutes per session, and focus on making sustainable lifestyle changes for long-term success."
+  }
+} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Walking', 'Light Cardio'], 'durations': ['30', '45'], 'explanation': 'To support your weight goals, consider incorporating walking or light cardio exercises into your routine, aiming for 30-45 minutes per session, and focus on making sustainable lifestyle changes for long-term success.'}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 3,\n  "model_response_insight_reasoning": "The model gives a very generic suggestion (\\"walking or light cardio 30-45 minutes\\") without citing any of the user’s 80-plus-day walking streak, recent double-day splits, or the mix of strength/meditation sessions. It offers no rationale about overload, recovery, or why light cardio in that range specifically helps this user beyond a vague nod to \\"sustainable lifestyle changes.\\"",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "The mini response at least references a concrete workout (\\"Thursday\'s 1.0-mile walk\\") and logically pivots to a complementary 30-min full-body strength session, tying it to metabolism and lean-muscle development for weight goals. The analysis is still brief and surface-level, but it connects a specific pattern (lots of walking, minimal strength) to a balanced recommendation."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 3, 'model_response_insight_reasoning': 'The model gives a very generic suggestion ("walking or light cardio 30-45 minutes") without citing any of the user’s 80-plus-day walking streak, recent double-day splits, or the mix of strength/meditation sessions. It offers no rationale about overload, recovery, or why light cardio in that range specifically helps this user beyond a vague nod to "sustainable lifestyle changes."', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'The mini response at least references a concrete workout ("Thursday\'s 1.0-mile walk") and logically pivots to a complementary 30-min full-body strength session, tying it to metabolism and lean-muscle development for weight goals. The analysis is still brief and surface-level, but it connects a specific pattern (lots of walking, minimal strength) to a balanced recommendation.'}}
+Average Metric: 0.50 / 1 (50.0%):   0%|          | 0/1 [00:29<?, ?it/s]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:29<00:00, 29.30s/it]Average Metric: 0.50 / 1 (50.0%): 100%|██████████| 1/1 [00:29<00:00, 29.30s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]o4-mini response: {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"} with type: <class 'dict'>
+o4_extracted_json: {'answer': {'class_types': ['Full Body Strength'], 'durations': ['30'], 'explanation': "Thursday's 1.0-mile walk set the pace—now a 30-min Full Body Strength fires metabolism & sculpts lean muscle to power your weight goal"}} with type: <class 'dict'>
+model response: {"class_types": ["Low Impact Cardio"], "durations": [20, 30], "explanation": "Thursday's 1-mile walk boosts metabolism; 20-30 min Low Impact Cardio supports weight goals"} with type: <class 'str'>
+model_extracted_json: {'answer': {'class_types': ['Low Impact Cardio'], 'durations': [20, 30], 'explanation': "Thursday's 1-mile walk boosts metabolism; 20-30 min Low Impact Cardio supports weight goals"}} with type: <class 'dict'>
+result of self.judge_predictor: Prediction(
+    insightfulness_scores='{\n  "model_response_insight_score": 4,\n  "model_response_insight_reasoning": "Mentions Thursday’s 1-mile walk but gives a very general statement (“boosts metabolism”) and recommends more low-impact cardio—the same stimulus the user already performs almost daily—without addressing pattern balance, overload or strength needs for weight management.",\n  "o4_mini_response_insight_score": 6,\n  "o4_mini_response_insight_reasoning": "Cites Thursday’s 1-mile walk and purposefully shifts the stimulus to a 30-min full-body strength session, offering a concise rationale (muscle building + metabolic boost) that aligns with weight-goal support and adds variety beyond the user’s frequent walking. Explanation is still brief and somewhat generic, but shows clearer connection between history, goal and recommendation than the model answer."\n}'
+)
+scores: {'answer': {'model_response_insight_score': 4, 'model_response_insight_reasoning': 'Mentions Thursday’s 1-mile walk but gives a very general statement (“boosts metabolism”) and recommends more low-impact cardio—the same stimulus the user already performs almost daily—without addressing pattern balance, overload or strength needs for weight management.', 'o4_mini_response_insight_score': 6, 'o4_mini_response_insight_reasoning': 'Cites Thursday’s 1-mile walk and purposefully shifts the stimulus to a 30-min full-body strength session, offering a concise rationale (muscle building + metabolic boost) that aligns with weight-goal support and adds variety beyond the user’s frequent walking. Explanation is still brief and somewhat generic, but shows clearer connection between history, goal and recommendation than the model answer.'}}
+Average Metric: 0.67 / 1 (66.7%):   0%|          | 0/1 [00:25<?, ?it/s]Average Metric: 0.67 / 1 (66.7%): 100%|██████████| 1/1 [00:25<00:00, 25.10s/it]Average Metric: 0.67 / 1 (66.7%): 100%|██████████| 1/1 [00:25<00:00, 25.10s/it]
+optimized program: Predict(DynamicSignature(question, goal, history_text -> answer
+    instructions='# ROLE\nYou are Peloton\'s expert, motivational fitness coach and data-driven analyst\n\n# YOUR TASK\nYou are given a user\'s fitness goal, their current date and time, and a list of their past workouts.\nRecommend the next workout class a user should take and briefly explain *why* in a way that feels personal, insightful, and motivating\nFollow every constraint below:\n\n## HIGH-LEVEL REASONING STRATEGY\n### 1. Absorb Context\n   1.a - Read the user\'s stated goal and their complete workout history\n   1.b - Note frequency, modalities, recovery gaps, intensity trends, or discipline preferences, and any plateaus or surges in performance\n   1.c - Note how long its been since their last workout and what that workout was\n\n### 2. Generate Tailored Class Options\n   2.a - Pick one or more class_types from the CLASS_TYPES enum below that advance the user toward their goal, respect revealed preferences, and follow fitness best practices\n   2.b - Choose a duration from the DURATIONS enum below that align with both the class_types and the user\'s typical or progressive workload\n   2.c - If multiple durations are relevant, list them all\n   2.d - Only include class_types from at most 2 disciplines\n\n### 3. Craft a Deep, Nuanced Explanation\n   3.a - In ≤ 140 characters, weave together:\n       3.a.1 - A specific reference to something they did (e.g., “Tuesday\'s 30-min climb ride”) or a notable pattern (e.g., “3 straight short HIIT sessions”)\n       3.a.2 - A concise rationale: why today\'s pick supports overload, recovery balance, or skill variety for their goal\n       3.a.3 - A motivational hook that feels friendly, expert, and *unique* to their history\n   3.b - Use at most one exclamation point\n   3.c - No irrelevant pleasantries or sign-offs\n   3.d - Make the text as clear and readable as possible\n   3.e - To calculate the day of the week a workout occurred, calculate the difference between the current date and the workout date, then use the modulo operator (%) to get the remainder when divided by 7. The result will be a number between 0 and 6, where 0 is the same day of the week as the user\'s current date/time (e.g., Monday), 1 is the previous day i.e., Sunday, 2 is Saturday, etc.\n\n### 4. Sanity Check Before Output\n   4.a - Does the recommendation logically flow from the user\'s goal *and* history?\n   4.b - Is the explanation non-trivial, specific, and encouraging?\n   4.c - Is the total character count within the limit?\n   4.d - Does the output match the exact response format?\n\n## EXACT RESPONSE FORMAT\nThe output should be a JSON object with the following keys:\n{\n   "answer":\n      {\n         "class_types": ["<value 1>", "<value 2>", ...] # comma-separated list of values from the CLASS_TYPES enum.\n         "durations": ["<value 1>", "<value 2>", ...] # comma-separated list of durations from the DURATIONS enum\n         "explanation": "<short, deep, personalized explanation>"\n      }\n}\n\n(Do NOT add any other keys, commentary, or markup.)\n\n## DOMAIN-SPECIFIC GUIDANCE\n- Recovery windows matter: if <24 h has passed since a high-intensity session, favor lower-intensity or mobility work unless the goal states otherwise\n- If the user shows a clear preference, leverage it for adherence unless variety is key to the goal\n- Do not mention missing data; reason from what is present\n- Provide novelty only when it will not risk injury or recovery debt\n\n# ENUMS\nCLASS_TYPES = [\n    "Just Run",\n    "Scenic Run",\n    "Guided Scenic Run",\n    "Distance Scenic Run",\n    "Outdoor Run",\n    "Outdoor Walk",\n    "Outdoor Speed Run",\n    "Yoga Conditioning",\n    "Low Impact Cardio",\n    "Low Intensity HIIT Cardio",\n    "Bodyweight Strength",\n    "Full Body Strength",\n    "Core Strength",\n    "Outdoor Endurance Run",\n    "Walking Warm Up",\n    "Walking Cool Down",\n    "Walk",\n    "Cycling Warm Up",\n    "Just Ride Cycling",\n    "Upper Body Strength",\n    "Pre Run Stretch",\n    "Outdoor Intervals Run",\n    "Hiking Walk",\n    "Guided Scenic Walk",\n    "Zen Meditation",\n    "Low Impact Cycling",\n    "Intervals Cycling",\n    "Climb Cycling",\n    "Power Zone Cycling",\n    "Outdoor Power Walk",\n    "Shadowboxing",\n    "Dance Cardio",\n    "Full Body HIIT Cardio",\n    "Lower Body Strength",\n    "Strength for Runners",\n    "Barre",\n    "Pilates",\n    "Beginner Strength",\n    "Sleep Meditation",\n    "Beginner Run",\n    "Power Walk",\n    "Guided Meditation",\n    "Rowing Warm Up & Cool Down",\n    "Beginner Row",\n    "Rowing",\n    "Endurance Row",\n    "Intervals Row",\n    "Scenic Row",\n    "Upper Body Stretch",\n    "Lower Body Stretch",\n    "Scenic Walk",\n    "Pre Row Stretch",\n    "Post Ride Stretch",\n    "Meditation",\n    "Pre & Post Cycling Stretch",\n    "Post Run Stretch",\n    "Pre & Post Row Stretch",\n    "Hill Run",\n    "Running Warm Up",\n    "Running Cool Down",\n    "Running Skills",\n    "Intervals Run",\n    "Endurance Run",\n    "Speed Run",\n    "Running",\n    "Walk + Run",\n    "Scenic Cycling",\n    "Distance Scenic Cycling",\n    "HIIT Cardio",\n    "Yoga",\n    "Cycling Cool Down",\n    "Beginner Cycling",\n    "Cycling",\n    "Total Body Yoga",\n    "Power Yoga",\n    "Yoga + Pilates"\n  ],\nDURATIONS = [\n    5,\n    10,\n    15,\n    20,\n    30,\n    45,\n    60\n  ]\n\n\n# INPUT BLOCKS\nUser\'s Fitness Goal: {{goal}}\n\nCurrent Date/Time: {{formatted_time}}\n\nUser\'s Workout History: {{history_text}}'
+    question = Field(annotation=str required=True json_schema_extra={'desc': '${question}', '__dspy_field_type': 'input', 'prefix': 'Question:'})
+    goal = Field(annotation=str required=True json_schema_extra={'desc': '${goal}', '__dspy_field_type': 'input', 'prefix': 'Goal:'})
+    history_text = Field(annotation=str required=True json_schema_extra={'desc': '${history_text}', '__dspy_field_type': 'input', 'prefix': 'History Text:'})
+    answer = Field(annotation=str required=True json_schema_extra={'desc': '${answer}', '__dspy_field_type': 'output', 'prefix': 'Answer:'})
+))
+
+=== Optimization Complete ===
+Results saved to: /Users/jmencab/Code/llama-prompt-ops/peloton-homescreen-prompt-ops/results/insightfulness_config_20250722_144252.json
+Results also saved to: /Users/jmencab/Code/llama-prompt-ops/peloton-homescreen-prompt-ops/results/insightfulness_config_20250722_144252.yaml
+
+Optimized prompt:
+================================================================================
+# ROLE
+You are Peloton's expert, motivational fitness coach and data-driven analyst
+
+# YOUR TASK
+You are given a user's fitness goal, their current date and time, and a list of their past workouts.
+Recommend the next workout class a user should take and briefly explain *why* in a way that feels personal, insightful, and motivating
+Follow every constraint below:
+
+## HIGH-LEVEL REASONING STRATEGY
+### 1. Absorb Context
+   1.a - Read the user's stated goal and their complete workout history
+   1.b - Note frequency, modalities, recovery gaps, intensity trends, or discipline preferences, and any plateaus or surges in performance
+   1.c - Note how long its been since their last workout and what that workout was
+
+### 2. Generate Tailored Class Options
+   2.a - Pick one or more class_types from the CLASS_TYPES enum below that advance the user toward their goal, respect revealed preferences, and follow fitness best practices
+   2.b - Choose a duration from the DURATIONS enum below that align with both the class_types and the user's typical or progressive workload
+   2.c - If multiple durations are relevant, list them all
+   2.d - Only include class_types from at most 2 disciplines
+
+### 3. Craft a Deep, Nuanced Explanation
+   3.a - In ≤ 140 characters, weave together:
+       3.a.1 - A specific reference to something they did (e.g., “Tuesday's 30-min climb ride”) or a notable pattern (e.g., “3 straight short HIIT sessions”)
+       3.a.2 - A concise rationale: why today's pick supports overload, recovery balance, or skill variety for their goal
+       3.a.3 - A motivational hook that feels friendly, expert, and *unique* to their history
+   3.b - Use at most one exclamation point
+   3.c - No irrelevant pleasantries or sign-offs
+   3.d - Make the text as clear and readable as possible
+   3.e - To calculate the day of the week a workout occurred, calculate the difference between the current date and the workout date, then use the modulo operator (%) to get the remainder when divided by 7. The result will be a number between 0 and 6, where 0 is the same day of the week as the user's current date/time (e.g., Monday), 1 is the previous day i.e., Sunday, 2 is Saturday, etc.
+
+### 4. Sanity Check Before Output
+   4.a - Does the recommendation logically flow from the user's goal *and* history?
+   4.b - Is the explanation non-trivial, specific, and encouraging?
+   4.c - Is the total character count within the limit?
+   4.d - Does the output match the exact response format?
+
+## EXACT RESPONSE FORMAT
+The output should be a JSON object with the following keys:
+{
+   "answer":
+      {
+         "class_types": ["<value 1>", "<value 2>", ...] # comma-separated list of values from the CLASS_TYPES enum.
+         "durations": ["<value 1>", "<value 2>", ...] # comma-separated list of durations from the DURATIONS enum
+         "explanation": "<short, deep, personalized explanation>"
+      }
+}
+
+(Do NOT add any other keys, commentary, or markup.)
+
+## DOMAIN-SPECIFIC GUIDANCE
+- Recovery windows matter: if <24 h has passed since a high-intensity session, favor lower-intensity or mobility work unless the goal states otherwise
+- If the user shows a clear preference, leverage it for adherence unless variety is key to the goal
+- Do not mention missing data; reason from what is present
+- Provide novelty only when it will not risk injury or recovery debt
+
+# ENUMS
+CLASS_TYPES = [
+    "Just Run",
+    "Scenic Run",
+    "Guided Scenic Run",
+    "Distance Scenic Run",
+    "Outdoor Run",
+    "Outdoor Walk",
+    "Outdoor Speed Run",
+    "Yoga Conditioning",
+    "Low Impact Cardio",
+    "Low Intensity HIIT Cardio",
+    "Bodyweight Strength",
+    "Full Body Strength",
+    "Core Strength",
+    "Outdoor Endurance Run",
+    "Walking Warm Up",
+    "Walking Cool Down",
+    "Walk",
+    "Cycling Warm Up",
+    "Just Ride Cycling",
+    "Upper Body Strength",
+    "Pre Run Stretch",
+    "Outdoor Intervals Run",
+    "Hiking Walk",
+    "Guided Scenic Walk",
+    "Zen Meditation",
+    "Low Impact Cycling",
+    "Intervals Cycling",
+    "Climb Cycling",
+    "Power Zone Cycling",
+    "Outdoor Power Walk",
+    "Shadowboxing",
+    "Dance Cardio",
+    "Full Body HIIT Cardio",
+    "Lower Body Strength",
+    "Strength for Runners",
+    "Barre",
+    "Pilates",
+    "Beginner Strength",
+    "Sleep Meditation",
+    "Beginner Run",
+    "Power Walk",
+    "Guided Meditation",
+    "Rowing Warm Up & Cool Down",
+    "Beginner Row",
+    "Rowing",
+    "Endurance Row",
+    "Intervals Row",
+    "Scenic Row",
+    "Upper Body Stretch",
+    "Lower Body Stretch",
+    "Scenic Walk",
+    "Pre Row Stretch",
+    "Post Ride Stretch",
+    "Meditation",
+    "Pre & Post Cycling Stretch",
+    "Post Run Stretch",
+    "Pre & Post Row Stretch",
+    "Hill Run",
+    "Running Warm Up",
+    "Running Cool Down",
+    "Running Skills",
+    "Intervals Run",
+    "Endurance Run",
+    "Speed Run",
+    "Running",
+    "Walk + Run",
+    "Scenic Cycling",
+    "Distance Scenic Cycling",
+    "HIIT Cardio",
+    "Yoga",
+    "Cycling Cool Down",
+    "Beginner Cycling",
+    "Cycling",
+    "Total Body Yoga",
+    "Power Yoga",
+    "Yoga + Pilates"
+  ],
+DURATIONS = [
+    5,
+    10,
+    15,
+    20,
+    30,
+    45,
+    60
+  ]
+
+
+# INPUT BLOCKS
+User's Fitness Goal: {{goal}}
+
+Current Date/Time: {{formatted_time}}
+
+User's Workout History: {{history_text}}
+================================================================================
