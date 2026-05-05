@@ -62,6 +62,13 @@ prompt-ops supports various inference providers and endpoints to fit your infras
 - **CSV**: Tabular data with headers
 - **YAML**: Structured data in YAML format
 
+## Documentation Languages / لغات التوثيق
+
+- [English (current)](./README.md)
+- [العربية / Arabic](./ar/README.md)
+
+---
+
 ## Try Our Examples
 
 We've prepared several complete examples to help you get started:
